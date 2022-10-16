@@ -1,25 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
-
-// Other components
-import { FormContainer } from './components/Forms/formStyles';
-import {
-  HeaderContainer,
-  MenuContainer,
-} from './components/Header/headerStyles';
-import { ErrorContainer } from './pages/Error/errorStyles';
-
-// export const FlexPattern = css`
-//   display: flex;
-//   align-items: center;
-//   flex-direction: column;
-// `;
-
-export const Container = styled.div`
-  justify-content: center;
-`;
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-
   :root {
     --corContainers-titulos: #f4faff;
     --corBackground: #00a5cf;
@@ -38,48 +19,36 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body, #root, html, ${Container}, ${HeaderContainer} { width: 100%; }
+  body, #root, html { height: 100%; }
 
-  body, #root, html, ${Container} { height: 100%; }
+  body, #root, html, header, footer, main { width: 100%; }
 
   body {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     min-height: 100vh;
+    background-color: var(--corBackground);
   }
 
-  input, button { border: none }
+  input, button { border: none; }
 
-  li { list-style: none }
+  li { list-style: none; }
 
-  button { cursor: pointer }
-
-  body, ${FormContainer} > button { background-color: var(--corBackground); }
+  button { cursor: pointer; }
 
   a { color: var(--corHeader-Footer-links-borders); }
 
-  ${Container}, ${HeaderContainer}, ${ErrorContainer}, ${FormContainer}, ${MenuContainer} {
+  header, footer, section, ul, form {
     display: flex;
     align-items: center;
   }
 
-  ${Container}, ${ErrorContainer}, ${FormContainer} { flex-direction: column; align-items: center; }
-
-  ${HeaderContainer}, ${FormContainer} > button:hover {
-    background-color: var(--corHeader-Footer-links-borders);
-  }
-
-  ${ErrorContainer}, ${FormContainer}, ${HeaderContainer}, ${FormContainer} > button, ${FormContainer} > input {
-    padding: var(--espacamentoElementos);
-  }
-
-  ${ErrorContainer}, ${FormContainer}, ${FormContainer} > button {
-    border-radius: var(--arredondaMentoElementos);
-  }
-
-  ${ErrorContainer}, ${FormContainer} {
+  header, ul, form {
     justify-content: space-around;
-    background-color: var(--corContainers-titulos);
+  }
+
+  footer, section, form {
+    flex-direction: column;
   }
 
 `;

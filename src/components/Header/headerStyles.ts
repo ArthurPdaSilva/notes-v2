@@ -1,19 +1,29 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div`
-  justify-content: space-between;
+export const HeaderContainer = styled.header`
+  background-color: var(--corHeader-Footer-links-borders);
   color: var(--corContainers-titulos);
-  min-height: 10vh;
-
-  h1 {
-    font-size: 3rem;
-  }
+  min-height: 15vh;
 `;
 
 export const MenuContainer = styled.ul`
-  gap: var(--espacamentoElementos);
+  width: 20%;
 
-  & > li {
+  & > li a,
+  & > li button {
+    display: block;
+    padding: var(--espacamentoElementos);
+    text-decoration: none;
     font-size: 1.4rem;
+    color: var(--corContainers-titulos);
+    background-color: transparent;
+    transition: all ease-in-out 0.3s;
+  }
+
+  & > li a:hover,
+  & > li button:hover {
+    color: gray;
+    text-decoration: underline;
+    transform: scale(1.1);
   }
 `;

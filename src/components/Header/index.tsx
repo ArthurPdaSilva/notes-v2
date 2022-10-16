@@ -1,14 +1,21 @@
 import React from 'react';
 import { HeaderContainer, MenuContainer } from './headerStyles';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
     <HeaderContainer>
-      <h1>Notes</h1>
+      <h1>Anotações e Listas de Afazeres</h1>
       <MenuContainer>
-        <li>Home</li>
-        <li>Perfil</li>
-        <li>Sair</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/profile">Perfil</Link>
+        </li>
+        <li>
+          <button>Sair</button>
+        </li>
       </MenuContainer>
     </HeaderContainer>
   );

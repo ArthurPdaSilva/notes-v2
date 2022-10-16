@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { ContainerPattern } from '../../patternStyles';
 
-export const ErrorContainer = styled.div`
+export const ErrorContainer = styled.section`
+  ${ContainerPattern}
   min-width: 40vw;
   height: 50vh;
 

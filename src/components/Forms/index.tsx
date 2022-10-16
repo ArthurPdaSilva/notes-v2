@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FormContainer } from './formStyles';
-import { Container } from '../../global';
+import { Container } from '../../patternStyles';
 
 type FormProtocol = {
   title: string;
