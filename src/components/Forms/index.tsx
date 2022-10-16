@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FormContainer } from './formStyles';
 import { Container } from '../../global';
@@ -9,9 +9,13 @@ type FormProtocol = {
 };
 
 export default function Forms({ title, type }: FormProtocol) {
+  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  }, []);
+
   return (
     <Container>
-      <FormContainer>
+      <FormContainer onSubmit={(e) => handleSubmit(e)}>
         <h1>{title}</h1>
         {type === 'register' && <input type="text" placeholder="Usuário" />}
         <input type="email" placeholder="Email" />

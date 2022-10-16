@@ -1,21 +1,15 @@
 import styled from 'styled-components';
-import { flexPattern } from '../../global';
 
 export const ErrorContainer = styled.div`
-  ${flexPattern}
-  justify-content: space-around;
-  gap: var(--espacamentoElementos);
-  border-radius: var(--arredondaMentoElementos);
-  background-color: var(--corContainers-titulos);
-  padding: var(--espacamentoElementos);
-  min-width: 50vw;
+  min-width: 40vw;
   height: 50vh;
 
   h1 {
-    font-size: 7rem;
+    font-size: 8rem;
   }
 
   p {
-    ${flexPattern}
+    text-align: center;
+    width: 80%;
   }
 `;

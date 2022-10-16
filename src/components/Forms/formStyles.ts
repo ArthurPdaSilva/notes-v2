@@ -1,13 +1,7 @@
 import styled from 'styled-components';
-import { flexPattern } from '../../global';
 
 export const FormContainer = styled.form`
-  ${flexPattern}
-  justify-content: space-around;
-  background-color: var(--corContainers-titulos);
-  padding: var(--espacamentoElementos);
-  border-radius: var(--arredondaMentoElementos);
-  min-width: 25vw;
+  width: 25vw;
   height: 60vh;
 
   & > h1 {
@@ -15,16 +9,15 @@ export const FormContainer = styled.form`
   }
 
   & > input {
+    border-bottom: 1px solid var(--corBackground);
+  }
+
+  & > input:focus,
+  & > input:not(:placeholder-shown) {
     border-bottom: 1px solid var(--corHeader-Footer-links-borders);
   }
 
-  & > a {
-    color: var(--corHeader-Footer-links-borders);
-  }
-
   & > button {
-    background-color: var(--corHeader-Footer-links-borders);
-    border-radius: var(--arredondaMentoElementos);
     color: var(--corContainers-titulos);
     font-weight: bold;
     font-size: 1.2rem;
@@ -32,7 +25,11 @@ export const FormContainer = styled.form`
 
   & > input,
   & > button {
-    padding: var(--espacamentoElementos);
     width: 80%;
+    transition: all ease-in-out 0.3s;
+  }
+
+  @media (max-width: 600px) {
+    width: 80vw;
   }
 `;

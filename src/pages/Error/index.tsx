@@ -7,11 +7,12 @@ export default function Error() {
   return (
     <Container>
       <ErrorContainer>
-        <h1>404</h1>
+        <h1>[404]</h1>
         <p>
-          <span>Desculpa, mas essa página não existe : (</span>
-          <Link to="/">Voltar a página inicial</Link>
+          Desculpa, mas essa página não foi encontrada. Podendo está em
+          manutenção ou não exister.
         </p>
+        <Link to="/">Voltar a página inicial</Link>
       </ErrorContainer>
     </Container>
   );
