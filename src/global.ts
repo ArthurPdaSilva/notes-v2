@@ -3,11 +3,12 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
   :root {
     --corContainers-titulos: #f4faff;
-    --corBackground: #00a5cf;
-    --corBotaoCriar: #0FFF95;
+    --corBackground: #002642;
+    --corBotaoAdd: #00a878;
+    --corBotaoAddHover: #007352;
     --corBotaoEditar: #FFB100;
     --corBotaoRemover: #ED6A5A;
-    --corHeader-Footer-links-borders: #004E64;
+    --corHeader-Footer-links-borders: #02040F;
     --espacamentoElementos: 10px;
     --arredondaMentoElementos: 5px;
   }
@@ -21,7 +22,7 @@ export default createGlobalStyle`
 
   body, #root, html { height: 100%; }
 
-  body, #root, html, header, footer, main { width: 100%; }
+  body, #root, html, header, main { width: 100%; }
 
   body {
     font-family: 'Poppins', sans-serif;
@@ -38,17 +39,12 @@ export default createGlobalStyle`
 
   a { color: var(--corHeader-Footer-links-borders); }
 
-  header, footer, section, ul, form {
-    display: flex;
-    align-items: center;
-  }
+  header, form, main { display: flex; }
 
-  header, ul, form {
-    justify-content: space-around;
-  }
+  header, form { align-items: center; }
 
-  footer, section, form {
-    flex-direction: column;
-  }
+  header, form { justify-content: space-between; }
+
+  footer, form, main { flex-direction: column; }
 
 `;

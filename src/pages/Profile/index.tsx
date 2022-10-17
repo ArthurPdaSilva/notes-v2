@@ -1,12 +1,11 @@
 import React from 'react';
+import Forms from '../../components/Forms';
+import { ProfileContainer } from './profileStyles';
 
 export default function Profile() {
   return (
-    <div>
-      <div>FOTO</div>
-      <input type="text" />
-      <input type="email" />
-      <button>Salvar</button>
-    </div>
+    <ProfileContainer>
+      <Forms title="Meu Perfil" type="profile" btnText="Salvar" />
+    </ProfileContainer>
   );
 }

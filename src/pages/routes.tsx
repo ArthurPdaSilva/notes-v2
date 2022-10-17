@@ -10,7 +10,6 @@ import Error from './Error';
 
 // Components
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { Container } from '../patternStyles';
 
 // Route Validation
@@ -19,7 +18,6 @@ function PrivateRoute({ children }: { children: JSX.Element }) {
     <Container isAllElement>
       <Header />
       {children}
-      <Footer />
     </Container>
   );
 }

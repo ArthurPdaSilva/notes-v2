@@ -15,17 +15,13 @@ export const FormContainer = styled.form`
     background-color: transparent;
   }
 
+  & > button {
+    background-color: var(--corBackground);
+  }
+
   & > input:focus,
   & > input:not(:placeholder-shown) {
     border-bottom: 1px solid var(--corHeader-Footer-links-borders);
-  }
-
-  & > button {
-    background-color: var(--corBackground);
-    color: var(--corContainers-titulos);
-    border-radius: var(--arredondaMentoElementos);
-    font-weight: bold;
-    font-size: 1.2rem;
   }
 
   & > button:hover {

@@ -1,10 +1,12 @@
 import React from 'react';
+import { ButtonAdd } from '../../patternStyles';
+import { MainContainer, ButtonContainer } from './homeStyles';
 
 export default function Home() {
   return (
-    <main>
+    <MainContainer>
       <h1>Anotações</h1>
-      <h2>Faça anotações de um jeito mais fácil : )</h2>
+      <h2>Faça TODOs de um jeito fácil : )</h2>
       <section>
         <div>
           <div>
@@ -31,9 +33,9 @@ export default function Home() {
           </ul>
         </div>
       </section>
-      <div>
-        <button>Criar nova lista</button>
-      </div>
-    </main>
+      <ButtonContainer btnElement>
+        <ButtonAdd>Criar nova lista</ButtonAdd>
+      </ButtonContainer>
+    </MainContainer>
   );
 }

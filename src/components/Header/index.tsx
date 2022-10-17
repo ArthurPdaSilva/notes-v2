@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Header() {
   return (
     <HeaderContainer>
-      <h1>Anotações e Listas de Afazeres</h1>
+      <h1>Notes</h1>
       <MenuContainer>
         <li>
           <Link to="/">Home</Link>

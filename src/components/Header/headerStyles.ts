@@ -1,13 +1,16 @@
 import styled from 'styled-components';
+import { FlexPattern } from '../../patternStyles';
 
 export const HeaderContainer = styled.header`
   background-color: var(--corHeader-Footer-links-borders);
   color: var(--corContainers-titulos);
-  min-height: 15vh;
+  padding: var(--espacamentoElementos);
 `;
 
 export const MenuContainer = styled.ul`
-  width: 20%;
+  ${FlexPattern}
+  gap: calc(var(--espacamentoElementos) + 10px);
+  width: 30%;
 
   & > li a,
   & > li button {
@@ -22,8 +25,7 @@ export const MenuContainer = styled.ul`
 
   & > li a:hover,
   & > li button:hover {
-    color: gray;
-    text-decoration: underline;
-    transform: scale(1.1);
+    background-color: var(--corBackground);
+    border-radius: var(--arredondaMentoElementos);
   }
 `;
