@@ -11,7 +11,7 @@ export const FormContainer = styled.form`
   }
 
   & > input {
-    border-bottom: 1px solid var(--corBackground);
+    border-bottom: 1px solid gray;
     background-color: transparent;
   }
 
@@ -21,7 +21,7 @@ export const FormContainer = styled.form`
 
   & > input:focus,
   & > input:not(:placeholder-shown) {
-    border-bottom: 1px solid var(--corHeader-Footer-links-borders);
+    border-bottom: 1px solid var(--corBackground);
   }
 
   & > button:hover {
