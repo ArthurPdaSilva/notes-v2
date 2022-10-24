@@ -10,6 +10,13 @@ export default function Home() {
       <SectionContainer>
         <Todo />
         <Todo />
+        <Todo />
+        <Todo />
+        <Todo />
+        <Todo />
+        <Todo />
+        <Todo />
+        <Todo />
       </SectionContainer>
       <ButtonContainer>
         <ButtonAdd>Criar nova lista</ButtonAdd>

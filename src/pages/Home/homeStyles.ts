@@ -15,8 +15,10 @@ export const MainContainer = styled.main`
 
 export const SectionContainer = styled.section`
   ${FlexCenterElement}
+  overflow-x: auto;
   gap: var(--espacamentoElementos);
-  height: 50vh;
+  padding: var(--espacamentoElementos);
+  min-height: 50vh;
 `;
 
 export const ButtonContainer = styled.div`
