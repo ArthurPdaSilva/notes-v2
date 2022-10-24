@@ -6,7 +6,7 @@ import { ErrorContainer } from './errorStyles';
 export default function Error() {
   return (
     <Container>
-      <ErrorContainer errorElement>
+      <ErrorContainer>
         <h1>[404]</h1>
         <p>
           Desculpa, mas essa página não foi encontrada. Podendo está em

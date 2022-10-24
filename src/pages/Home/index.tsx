@@ -1,39 +1,17 @@
 import React from 'react';
+import Todo from '../../components/Todo';
 import { ButtonAdd } from '../../patternStyles';
-import { MainContainer, ButtonContainer } from './homeStyles';
+import { MainContainer, ButtonContainer, SectionContainer } from './homeStyles';
 
 export default function Home() {
   return (
     <MainContainer>
-      <h1>Anotações</h1>
-      <h2>Faça TODOs de um jeito fácil : )</h2>
-      <section>
-        <div>
-          <div>
-            <h3>Nome da lista</h3>
-            <button>X</button>
-          </div>
-          <ul>
-            <li>Item</li>
-            <li>Item</li>
-            <li>Item</li>
-            <li>Item</li>
-          </ul>
-        </div>
-        <div>
-          <div>
-            <h3>Nome da lista</h3>
-            <button>X</button>
-          </div>
-          <ul>
-            <li>Item</li>
-            <li>Item</li>
-            <li>Item</li>
-            <li>Item</li>
-          </ul>
-        </div>
-      </section>
-      <ButtonContainer btnElement>
+      <h1>Faça TODOs de um jeito fácil : )</h1>
+      <SectionContainer>
+        <Todo />
+        <Todo />
+      </SectionContainer>
+      <ButtonContainer>
         <ButtonAdd>Criar nova lista</ButtonAdd>
       </ButtonContainer>
     </MainContainer>

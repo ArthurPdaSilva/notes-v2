@@ -39,12 +39,4 @@ export default createGlobalStyle`
 
   a { color: var(--corHeader-Footer-links-borders); }
 
-  header, form, main { display: flex; }
-
-  header, form { align-items: center; }
-
-  header, form { justify-content: space-between; }
-
-  footer, form, main { flex-direction: column; }
-
 `;

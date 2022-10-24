@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { ContainerPattern, FlexPattern } from '../../patternStyles';
+import { ContainerPattern, FlexCentralize } from '../../patternStyles';
 
 export const ErrorContainer = styled.section`
+  ${FlexCentralize}
   ${ContainerPattern}
-  ${FlexPattern}
   gap: var(--espacamentoElementos);
   min-width: 40vw;
   height: 50vh;

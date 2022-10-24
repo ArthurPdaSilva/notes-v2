@@ -15,7 +15,7 @@ import { Container } from '../patternStyles';
 // Route Validation
 function PrivateRoute({ children }: { children: JSX.Element }) {
   return (
-    <Container isAllElement>
+    <Container>
       <Header />
       {children}
     </Container>

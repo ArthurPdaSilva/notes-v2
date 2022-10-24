@@ -1,16 +1,15 @@
 import styled from 'styled-components';
-import { FlexPattern } from '../../patternStyles';
+import { FlexMenu } from '../../patternStyles';
 
 export const HeaderContainer = styled.header`
+  ${FlexMenu}
   background-color: var(--corHeader-Footer-links-borders);
   color: var(--corContainers-titulos);
   padding: var(--espacamentoElementos);
 `;
 
 export const MenuContainer = styled.ul`
-  ${FlexPattern}
-  gap: calc(var(--espacamentoElementos) + 10px);
-  width: 30%;
+  ${FlexMenu}
 
   & > li a,
   & > li button {

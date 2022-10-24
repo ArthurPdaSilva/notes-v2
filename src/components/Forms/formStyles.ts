@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import { ContainerPattern } from '../../patternStyles';
+import { ContainerPattern, FlexCentralize } from '../../patternStyles';
 
 export const FormContainer = styled.form`
+  ${FlexCentralize}
   ${ContainerPattern}
+  justify-content: space-around;
   width: 25vw;
   height: 60vh;
 
@@ -24,14 +26,23 @@ export const FormContainer = styled.form`
     border-bottom: 1px solid var(--corBackground);
   }
 
+  & > input:focus::placeholder {
+    color: var(--corBackground);
+  }
+
   & > button:hover {
     background-color: var(--corHeader-Footer-links-borders);
   }
 
   & > input,
+  & > button,
+  & > input::placeholder {
+    transition: all ease-in-out 0.3s;
+  }
+
+  & > input,
   & > button {
     width: 80%;
-    transition: all ease-in-out 0.3s;
     padding: var(--espacamentoElementos);
   }
 

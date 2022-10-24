@@ -1,28 +1,29 @@
 import styled, { css } from 'styled-components';
 
-type FlexElement = {
-  isAllElement?: boolean;
-  errorElement?: boolean;
-  btnElement?: boolean;
-};
-
 export const ContainerPattern = css`
   background-color: var(--corContainers-titulos);
   border-radius: var(--arredondaMentoElementos);
   padding: var(--espacamentoElementos);
 `;
 
-export const FlexPattern = css<FlexElement>`
+export const FlexCenterElement = css`
   display: flex;
-  align-items: ${(props) => !props.isAllElement && 'center'};
-  justify-content: ${(props) =>
-    !props.isAllElement && (props.btnElement ? 'flex-end' : 'center')};
-  flex-direction: ${(props) =>
-    (props.isAllElement || props.errorElement) && 'column'};
+  align-items: center;
+`;
+
+export const FlexMenu = css`
+  ${FlexCenterElement}
+  justify-content: space-between;
+`;
+
+export const FlexCentralize = css`
+  ${FlexCenterElement}
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const Container = styled.div`
-  ${FlexPattern}
+  ${FlexCentralize}
   width: 100%;
   height: 100%;
 `;
