@@ -10,22 +10,6 @@ export const TodoContainer = styled.div`
   ${FlexCentralize}
   gap: var(--espacamentoElementos);
   height: 50vh;
-
-  & > button {
-    background-color: var(--corBotaoAdd);
-    padding: var(--espacamentoElementos);
-    transition: all ease-in-out 0.3s;
-  }
-
-  & > button:hover {
-    background-color: var(--corBotaoAddHover);
-  }
-`;
-
-export const TitleContainer = styled.div`
-  ${FlexMenu}
-  width: 100%;
-  gap: var(--espacamentoElementos);
 `;
 
 export const TodoList = styled.ul`

@@ -24,14 +24,4 @@ export const SectionContainer = styled.section`
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-
-  & > button {
-    background-color: var(--corBotaoAdd);
-    padding: var(--espacamentoElementos);
-    transition: all ease-in-out 0.3s;
-  }
-
-  & > button:hover {
-    background-color: var(--corBotaoAddHover);
-  }
 `;

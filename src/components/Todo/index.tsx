@@ -1,8 +1,11 @@
-import React from 'react';
-import { ButtonAdd } from '../../patternStyles';
-import { TodoContainer, TitleContainer, TodoList } from './todoStyles';
+import React, { useState } from 'react';
+import { ButtonAdd, TitleContainer } from '../../patternStyles';
+import Modal from '../Modal';
+import { TodoContainer, TodoList } from './todoStyles';
 
 export default function Todo() {
+  const [modal, setModal] = useState(false);
+
   return (
     <TodoContainer>
       <TitleContainer>
@@ -74,7 +77,8 @@ export default function Todo() {
           </div>
         </li>
       </TodoList>
-      <ButtonAdd>Adicionar Mais</ButtonAdd>
+      <ButtonAdd onClick={() => setModal(!modal)}>Adicionar Mais</ButtonAdd>
+      {modal && <Modal title="Lista" setModal={setModal} />}
     </TodoContainer>
   );
 }

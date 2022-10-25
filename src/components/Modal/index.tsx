@@ -1,26 +1,39 @@
 import React from 'react';
-import { ButtonAdd } from '../../patternStyles';
+import {
+  ModalBackground,
+  ModalContainer,
+  InputContainer,
+  ListContainer,
+} from './modalStyles';
+import { ButtonAdd, TitleContainer } from '../../patternStyles';
 
 type ModalProtocol = {
   title?: string;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Modal({ title }: ModalProtocol) {
+export default function Modal({ title, setModal }: ModalProtocol) {
   return (
-    <div>
-      <h1>{!title && 'Nova lista'}</h1>
-      {!title && <input type="text" placeholder="Qual o nome da lista?" />}
-      <div>
-        <input type="text" placeholder="Adicionar item" />
-        <button>X</button>
-      </div>
-      <ul>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-      </ul>
-      <ButtonAdd>Concluído</ButtonAdd>
-    </div>
+    <ModalBackground>
+      <ModalContainer>
+        <TitleContainer>
+          <h1>{!title ? 'Nova lista' : title}</h1>
+          <button onClick={() => setModal(false)}>X</button>
+        </TitleContainer>
+
+        {!title && <input type="text" placeholder="Qual o nome da lista?" />}
+        <InputContainer>
+          <input type="text" placeholder="Adicionar item" />
+          <button>+</button>
+        </InputContainer>
+        <ListContainer>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+        </ListContainer>
+        <ButtonAdd>Concluído</ButtonAdd>
+      </ModalContainer>
+    </ModalBackground>
   );
 }
