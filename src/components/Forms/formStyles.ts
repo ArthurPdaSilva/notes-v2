@@ -6,7 +6,7 @@ export const FormContainer = styled.form`
   ${ContainerPattern}
   justify-content: space-around;
   width: 25vw;
-  height: 60vh;
+  height: 70vh;
 
   & > h1 {
     font-size: 3rem;

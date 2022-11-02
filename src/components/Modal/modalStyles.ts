@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { ContainerPattern, FlexCentralize } from '../../patternStyles';
+import {
+  ContainerPattern,
+  FlexCentralize,
+  FlexCenterElement,
+  FlexMenu,
+} from '../../patternStyles';
 
 export const ModalBackground = styled.div`
   ${FlexCentralize}
@@ -14,15 +19,15 @@ export const ModalBackground = styled.div`
 
 export const ModalContainer = styled.div`
   ${ContainerPattern}
-  ${FlexCentralize}
-
-  input {
-    border-bottom: 1px solid gray;
-  }
+  ${FlexMenu}
+  flex-direction: column;
+  min-height: 50vh;
 `;
 
-export const InputContainer = styled.div``;
-
-export const ListContainer = styled.ul`
-  width: 100%;
+export const InputContainer = styled.div`
+  ${FlexCenterElement}
+  & > input {
+    border: 1px solid gray;
+    padding: var(--espacamentoElementos);
+  }
 `;

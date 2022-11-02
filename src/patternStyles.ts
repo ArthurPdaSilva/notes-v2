@@ -47,3 +47,26 @@ export const ButtonAdd = styled.button`
     background-color: var(--corBotaoAddHover);
   }
 `;
+
+export const ListPattern = styled.ul`
+  overflow-y: auto;
+  overflow-x: hidden;
+  ${FlexCentralize}
+  gap: var(--espacamentoElementos);
+
+  li {
+    ${FlexMenu}
+    width: 20vw;
+  }
+
+  li > div {
+    display: flex;
+    gap: var(--espacamentoElementos);
+  }
+
+  span {
+    display: block;
+    word-break: break-all;
+    width: 70%;
+  }
+`;

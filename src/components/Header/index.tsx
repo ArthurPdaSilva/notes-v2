@@ -14,7 +14,7 @@ export default function Header() {
           <Link to="/profile">Perfil</Link>
         </li>
         <li>
-          <button>Sair</button>
+          <Link to="/login">Sair</Link>
         </li>
       </MenuContainer>
     </HeaderContainer>

@@ -35,7 +35,7 @@ export default createGlobalStyle`
 
   li { list-style: none; }
 
-  button { cursor: pointer; }
+  button, svg { cursor: pointer; }
 
   a { color: var(--corHeader-Footer-links-borders); }
 

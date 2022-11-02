@@ -1,11 +1,7 @@
 import React from 'react';
-import {
-  ModalBackground,
-  ModalContainer,
-  InputContainer,
-  ListContainer,
-} from './modalStyles';
-import { ButtonAdd, TitleContainer } from '../../patternStyles';
+import { ModalBackground, ModalContainer, InputContainer } from './modalStyles';
+import { ButtonAdd, ListPattern, TitleContainer } from '../../patternStyles';
+import { FiPlus, FiX } from 'react-icons/fi';
 
 type ModalProtocol = {
   title?: string;
@@ -17,21 +13,30 @@ export default function Modal({ title, setModal }: ModalProtocol) {
     <ModalBackground>
       <ModalContainer>
         <TitleContainer>
-          <h1>{!title ? 'Nova lista' : title}</h1>
-          <button onClick={() => setModal(false)}>X</button>
+          <h1>
+            {!title ? (
+              <input type="text" placeholder="Digita o Nome da Lista" />
+            ) : (
+              title
+            )}
+          </h1>
+          <FiX size={22} color="gray" onClick={() => setModal(false)} />
         </TitleContainer>
 
-        {!title && <input type="text" placeholder="Qual o nome da lista?" />}
         <InputContainer>
           <input type="text" placeholder="Adicionar item" />
-          <button>+</button>
+          <FiPlus size={36} color="green" />
         </InputContainer>
-        <ListContainer>
-          <li>1</li>
-          <li>1</li>
-          <li>1</li>
-          <li>1</li>
-        </ListContainer>
+        <ListPattern>
+          <li>
+            <span>Item</span>
+            <FiX size={22} color="red" />
+          </li>
+          <li>
+            <span>Item</span>
+            <FiX size={22} color="red" />
+          </li>
+        </ListPattern>
         <ButtonAdd>Concluído</ButtonAdd>
       </ModalContainer>
     </ModalBackground>
