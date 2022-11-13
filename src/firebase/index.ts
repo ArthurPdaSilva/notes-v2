@@ -4,13 +4,12 @@ import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
 initializeApp({
-  apiKey: 'AIzaSyCUPfj2fYvgFpvPKETNcq_2-rXjlzCgvWg',
-  authDomain: 'notes-project-45868.firebaseapp.com',
-  projectId: 'notes-project-45868',
-  storageBucket: 'notes-project-45868.appspot.com',
-  messagingSenderId: '953800681922',
-  appId: '1:953800681922:web:8b52205b8b20105d850e5b',
-  measurementId: 'G-T9MBDQWJED',
+  apiKey: 'AIzaSyC1EoGfC_trzs2xcvjYWB534YkH-Lglmvo',
+  authDomain: 'notes-72596.firebaseapp.com',
+  projectId: 'notes-72596',
+  storageBucket: 'notes-72596.appspot.com',
+  messagingSenderId: '943447573679',
+  appId: '1:943447573679:web:f225c242914277a6bc805a',
 });
 
 export const db = getFirestore();

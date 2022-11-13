@@ -21,7 +21,12 @@ export const ModalContainer = styled.div`
   ${ContainerPattern}
   ${FlexMenu}
   flex-direction: column;
-  min-height: 50vh;
+  height: 60vh;
+
+  & > div {
+    ${FlexCentralize}
+    gap: var(--espacamentoElementos);
+  }
 `;
 
 export const InputContainer = styled.div`

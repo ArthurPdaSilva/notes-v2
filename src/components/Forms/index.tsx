@@ -4,6 +4,7 @@ import { FormContainer } from './formStyles';
 import { ButtonAdd, Container } from '../../patternStyles';
 import UserType from '../../types/UserType';
 import { AuthContext } from '../../contexts/auth';
+import { TodoContext } from '../../contexts/todos';
 
 type FormProtocol = {
   title: string;
@@ -24,6 +25,7 @@ export default function Forms({
     password: '',
   });
   const appContext = useContext(AuthContext);
+  const todoContext = useContext(TodoContext);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,8 +47,10 @@ export default function Forms({
       if (type === 'profile') {
         console.log('Perfil');
       } else {
-        if (type === 'login') appContext?.signIn(userForm);
-        else appContext?.signUp(userForm);
+        if (type === 'login') {
+          appContext?.signIn(userForm);
+          todoContext?.getTodos();
+        } else appContext?.signUp(userForm);
       }
     },
     [userForm, setUserForm],
@@ -66,6 +70,8 @@ export default function Forms({
             name="name"
             value={userForm.name}
             onChange={(e) => handleChange(e)}
+            minLength={5}
+            required
           />
         )}
         <input
@@ -75,6 +81,7 @@ export default function Forms({
           disabled={type === 'profile'}
           value={userForm.email}
           onChange={(e) => handleChange(e)}
+          required
         />
         {type !== 'profile' && (
           <input
@@ -83,6 +90,8 @@ export default function Forms({
             name="password"
             value={userForm.password}
             onChange={(e) => handleChange(e)}
+            minLength={5}
+            required
           />
         )}
         <ButtonAdd type="submit">{btnText}</ButtonAdd>

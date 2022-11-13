@@ -6,6 +6,7 @@ export const HeaderContainer = styled.header`
   background-color: var(--corHeader-Footer-links-borders);
   color: var(--corContainers-titulos);
   padding: var(--espacamentoElementos);
+  margin-bottom: 20px;
 `;
 
 export const MenuContainer = styled.ul`

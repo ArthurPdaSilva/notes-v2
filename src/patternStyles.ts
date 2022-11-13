@@ -64,6 +64,7 @@ export const ListPattern = styled.ul`
   ${FlexCentralize}
   gap: var(--espacamentoElementos);
   width: 100%;
+  height: 70vh;
 
   li {
     ${FlexMenu}
