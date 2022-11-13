@@ -9,6 +9,7 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.65",
     "@types/react": "^18.0.21",
+    "firebase": "^9.14.0",
     "react": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.2",

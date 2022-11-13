@@ -25,7 +25,7 @@ export default function Modal({ title, setModal }: ModalProtocol) {
 
         <InputContainer>
           <input type="text" placeholder="Adicionar item" />
-          <FiPlus size={36} color="green" />
+          <FiPlus size={37} color="green" />
         </InputContainer>
         <ListPattern>
           <li>

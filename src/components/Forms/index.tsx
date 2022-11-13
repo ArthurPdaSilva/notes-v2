@@ -1,31 +1,29 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FormContainer } from './formStyles';
 import { ButtonAdd, Container } from '../../patternStyles';
 import UserType from '../../types/UserType';
+import { AuthContext } from '../../contexts/auth';
 
 type FormProtocol = {
   title: string;
   type: string;
   btnText: string;
-  submitType: (e: React.FormEvent<HTMLFormElement>) => void;
   linkText?: string;
-  emailValue?: string;
 };
 
 export default function Forms({
   title,
   type,
   btnText,
-  emailValue,
-  submitType,
   linkText,
 }: FormProtocol) {
   const [userForm, setUserForm] = useState<UserType>({
     name: '',
-    email: emailValue ?? '',
+    email: '',
     password: '',
   });
+  const appContext = useContext(AuthContext);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,18 +32,25 @@ export default function Forms({
     [userForm, setUserForm],
   );
 
-  // const handleSubmit = useCallback(
-  //   (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-  //     localStorage.setItem('userst', JSON.stringify(userForm));
-  //     setUserForm({
-  //       name: '',
-  //       email: '',
-  //       password: '',
-  //     });
-  //   },
-  //   [userForm, setUserForm],
-  // );
+  useEffect(() => {
+    const myUser = localStorage.getItem('user')
+      ? (JSON.parse(localStorage.getItem('user') as string) as UserType)
+      : { name: '', email: '', password: '' };
+    setUserForm(myUser);
+  }, [setUserForm]);
+
+  const submitType = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (type === 'profile') {
+        console.log('Perfil');
+      } else {
+        if (type === 'login') appContext?.signIn(userForm);
+        else appContext?.signUp(userForm);
+      }
+    },
+    [userForm, setUserForm],
+  );
 
   return (
     <Container>

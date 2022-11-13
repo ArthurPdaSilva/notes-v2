@@ -16,45 +16,27 @@ export default function Todo() {
       <ListPattern>
         <li>
           <span>Item</span>
-          <div>
-            <button>EDIT</button>
-            <FiX size={22} color="red" />
-          </div>
+          <FiX size={22} color="red" />
         </li>
         <li>
           <span>Item</span>
-          <div>
-            <button>EDIT</button>
-            <FiX size={22} color="red" />
-          </div>
+          <FiX size={22} color="red" />
         </li>
         <li>
           <span>Item</span>
-          <div>
-            <button>EDIT</button>
-            <FiX size={22} color="red" />
-          </div>
+          <FiX size={22} color="red" />
         </li>
         <li>
           <span>Item</span>
-          <div>
-            <button>EDIT</button>
-            <FiX size={22} color="red" />
-          </div>
+          <FiX size={22} color="red" />
         </li>
         <li>
           <span>Item</span>
-          <div>
-            <button>EDIT</button>
-            <FiX size={22} color="red" />
-          </div>
+          <FiX size={22} color="red" />
         </li>
         <li>
           <span>Item</span>
-          <div>
-            <button>EDIT</button>
-            <FiX size={22} color="red" />
-          </div>
+          <FiX size={22} color="red" />
         </li>
       </ListPattern>
       <ButtonAdd onClick={() => setModal(!modal)}>Adicionar Mais</ButtonAdd>

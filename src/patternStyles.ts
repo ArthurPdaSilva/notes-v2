@@ -32,6 +32,16 @@ export const TitleContainer = styled.div`
   ${FlexMenu}
   width: 100%;
   gap: var(--espacamentoElementos);
+
+  & > h1 input:focus,
+  & > h1 input:not(:placeholder-shown) {
+    border-bottom: 1px solid var(--corBotaoAddHover);
+  }
+
+  & > h1 input {
+    border-bottom: 1px solid gray;
+    padding: var(--espacamentoElementos);
+  }
 `;
 
 export const ButtonAdd = styled.button`
@@ -53,15 +63,11 @@ export const ListPattern = styled.ul`
   overflow-x: hidden;
   ${FlexCentralize}
   gap: var(--espacamentoElementos);
+  width: 100%;
 
   li {
     ${FlexMenu}
-    width: 20vw;
-  }
-
-  li > div {
-    display: flex;
-    gap: var(--espacamentoElementos);
+    width: 100%;
   }
 
   span {

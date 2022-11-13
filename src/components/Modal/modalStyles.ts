@@ -26,6 +26,12 @@ export const ModalContainer = styled.div`
 
 export const InputContainer = styled.div`
   ${FlexCenterElement}
+
+  & > input:focus,
+  & > input:not(:placeholder-shown) {
+    border: 1px solid var(--corBotaoAddHover);
+  }
+
   & > input {
     border: 1px solid gray;
     padding: var(--espacamentoElementos);

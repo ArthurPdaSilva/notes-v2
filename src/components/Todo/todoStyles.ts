@@ -6,5 +6,10 @@ export const TodoContainer = styled.div`
   ${FlexMenu}
   flex-direction: column;
   gap: var(--espacamentoElementos);
-  height: 50vh;
+  height: 45vh;
+  min-width: 20vw;
+
+  @media (max-width: 600px) {
+    min-width: 60vw;
+  }
 `;
