@@ -1,11 +1,12 @@
-import React, { createContext, useState, useCallback, useContext } from 'react';
+import React, { createContext, useState, useCallback, useEffect } from 'react';
 import getTodo from '../services/getTodo';
 import TodoType from '../types/TodoType';
-import { AuthContext } from './auth';
+import UserType from '../types/UserType';
 
 interface AppContextInterface {
   todos: TodoType[];
-  getTodos: () => void;
+  saveTodos: (item: TodoType[]) => void;
+  getTodos: () => Promise<TodoType[] | never[]>;
   setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
 }
 
@@ -13,19 +14,34 @@ export const TodoContext = createContext<AppContextInterface | null>(null);
 
 export default function TodoProvider({ children }: { children: JSX.Element }) {
   const [todos, setTodos] = useState<TodoType[]>([]);
-  const appContext = useContext(AuthContext);
 
-  const getTodos = useCallback(() => {
-    getTodo()
-      .then((data) => {
-        console.log(data);
-        setTodos(data.filter((item) => item.id === appContext?.user?.uid));
-      })
-      .catch(() => alert('Falha ao recuperar listas'));
+  useEffect(() => {
+    const isList = localStorage.getItem('todos') ?? ([] as TodoType[]);
+    if (isList?.length !== 0)
+      setTodos(JSON.parse(isList as string) as TodoType[]);
   }, [setTodos]);
 
+  const getTodos = useCallback(() => {
+    return getTodo()
+      .then((data) => {
+        return data;
+      })
+      .catch(() => {
+        alert('Falha ao recuperar listas');
+        return [];
+      });
+  }, [setTodos]);
+
+  const saveTodos = useCallback(
+    (todosSave: TodoType[]) => {
+      localStorage.setItem('todos', JSON.stringify(todosSave));
+      setTodos(todosSave);
+    },
+    [todos, setTodos],
+  );
+
   return (
-    <TodoContext.Provider value={{ todos, setTodos, getTodos }}>
+    <TodoContext.Provider value={{ todos, setTodos, getTodos, saveTodos }}>
       {children}
     </TodoContext.Provider>
   );

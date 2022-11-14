@@ -13,7 +13,6 @@ export default async function (): Promise<TodoType[]> {
           itens: doc.data().itens,
         });
       });
-
       return lista;
     })
     .catch((e) => {

@@ -4,7 +4,6 @@ import { FormContainer } from './formStyles';
 import { ButtonAdd, Container } from '../../patternStyles';
 import UserType from '../../types/UserType';
 import { AuthContext } from '../../contexts/auth';
-import { TodoContext } from '../../contexts/todos';
 
 type FormProtocol = {
   title: string;
@@ -25,7 +24,6 @@ export default function Forms({
     password: '',
   });
   const appContext = useContext(AuthContext);
-  const todoContext = useContext(TodoContext);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,11 +47,10 @@ export default function Forms({
       } else {
         if (type === 'login') {
           appContext?.signIn(userForm);
-          todoContext?.getTodos();
         } else appContext?.signUp(userForm);
       }
     },
-    [userForm, setUserForm],
+    [userForm, setUserForm, appContext],
   );
 
   return (

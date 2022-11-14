@@ -42,7 +42,6 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
       Login(email, password)
         .then((data) => {
           setUser(data);
-          console.log(data);
           storageUser(data as UserType);
           alert('Bem vindo de volta');
         })
@@ -57,6 +56,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
     localStorage.setItem(
       'user',
       JSON.stringify({
+        uid: user.uid,
         name: user.name,
         email: user.email,
         userPhoto: user.userPhoto ?? 'NotFound',

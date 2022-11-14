@@ -2,9 +2,18 @@ import React, { useContext } from 'react';
 import { HeaderContainer, MenuContainer } from './headerStyles';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
+import { TodoContext } from '../../contexts/todos';
 
 export default function Header() {
   const appContext = useContext(AuthContext);
+  const todoContext = useContext(TodoContext);
+
+  const handleClose = () => {
+    appContext?.logout();
+    todoContext?.setTodos([]);
+    localStorage.removeItem('todos');
+  };
+
   return (
     <HeaderContainer>
       <h1>Notes</h1>
@@ -16,7 +25,7 @@ export default function Header() {
           <Link to="/profile">Perfil</Link>
         </li>
         <li>
-          <Link to="/login" onClick={appContext?.logout}>
+          <Link to="/login" onClick={handleClose}>
             Sair
           </Link>
         </li>

@@ -72,10 +72,11 @@ export default function Modal({ title, setModal }: ModalProtocol) {
       itens: list,
     };
 
-    todoContext?.setTodos([...todoContext.todos, newItem]);
     AddTodo(newItem)
-      .then(() => alert('Lista cadastrada'))
+      .then(() => alert('Lista cadastrada com sucesso!'))
       .catch((e: any) => console.log(e));
+
+    todoContext?.saveTodos([...todoContext.todos, newItem]);
     setModal(false);
   }, [list, nameList, setModal]);
 
