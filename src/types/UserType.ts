@@ -1,6 +1,6 @@
 export default interface UserType {
   uid?: string;
-  userPhoto?: string | null;
+  avatarUrl?: string;
   name: string;
   email: string;
   password: string;

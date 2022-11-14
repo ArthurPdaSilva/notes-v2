@@ -50,3 +50,33 @@ export const FormContainer = styled.form`
     width: 80vw;
   }
 `;
+
+export const Avatar = styled.label`
+  ${FlexCentralize}
+
+  input {
+    display: none;
+  }
+
+  span {
+    z-index: 99;
+    position: absolute;
+    opacity: 0.7;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.4);
+    }
+
+    svg:hover {
+      color: var(--corHeader-Footer-links-borders);
+    }
+  }
+
+  img {
+    width: 20vw;
+    height: 30vh;
+    border-radius: calc(var(--arredondaMentoElementos) + 15px);
+  }
+`;

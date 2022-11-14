@@ -1,9 +1,12 @@
 import React, { useCallback, useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FormContainer } from './formStyles';
+import { Avatar, FormContainer } from './formStyles';
 import { ButtonAdd, Container } from '../../patternStyles';
 import UserType from '../../types/UserType';
 import { AuthContext } from '../../contexts/auth';
+import { FiUpload } from 'react-icons/fi';
+import PhotoStorage from '../../services/PhotoStorage';
+import UpdateUser from '../../services/UpdateUser';
 
 type FormProtocol = {
   title: string;
@@ -18,12 +21,16 @@ export default function Forms({
   btnText,
   linkText,
 }: FormProtocol) {
+  const appContext = useContext(AuthContext);
   const [userForm, setUserForm] = useState<UserType>({
     name: '',
     email: '',
     password: '',
   });
-  const appContext = useContext(AuthContext);
+  const [avatarUrl, setAvatarUrl] = useState(
+    (appContext?.user?.avatarUrl as string) ?? 'assets/user.png',
+  );
+  const [imageAvatar, setImageAvatar] = useState<File | null>(null);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,18 +46,49 @@ export default function Forms({
     setUserForm(myUser);
   }, [setUserForm]);
 
+  const handleFile = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.value[0]) {
+        if (!e.target.files) return;
+        const image = e.target.files[0];
+        if (image.type === 'image/jpeg' || image.type === 'image/png') {
+          setImageAvatar(image);
+          setAvatarUrl(URL.createObjectURL(image));
+        } else {
+          alert('Envie uma imagem válida!');
+          return null;
+        }
+      }
+    },
+    [setImageAvatar, setAvatarUrl],
+  );
+
   const submitType = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (type === 'profile') {
-        console.log('Perfil');
+        if (imageAvatar) {
+          const ref = PhotoStorage(
+            appContext?.user?.uid as string,
+            imageAvatar,
+          );
+          await UpdateUser(
+            appContext?.user as UserType,
+            await ref.then((value) => {
+              return value;
+            }),
+            userForm.name,
+          ).then((newValue) => {
+            appContext?.saveChangeUser(newValue as UserType);
+          });
+        }
       } else {
         if (type === 'login') {
           appContext?.signIn(userForm);
         } else appContext?.signUp(userForm);
       }
     },
-    [userForm, setUserForm, appContext],
+    [userForm, setUserForm, appContext, imageAvatar],
   );
 
   return (
@@ -58,7 +96,17 @@ export default function Forms({
       <FormContainer onSubmit={(e) => submitType(e)}>
         <h1>{title}</h1>
         {type === 'profile' && (
-          <img src="assets/user.png" alt="Imagem do usuário" />
+          <Avatar>
+            <span>
+              <FiUpload color="#002642" size={25} />
+            </span>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleFile(e)}
+            />
+            <img src={avatarUrl} alt="Imagem do usuário" />
+          </Avatar>
         )}
         {type !== 'login' && (
           <input

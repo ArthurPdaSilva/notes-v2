@@ -19,7 +19,6 @@ export default function Home() {
           (item) => item.id === appContext?.user?.uid,
         );
         todoContext.saveTodos(newTodo);
-        console.log('V');
       });
     }
   }, []);

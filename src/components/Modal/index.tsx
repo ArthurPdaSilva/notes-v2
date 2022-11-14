@@ -116,7 +116,13 @@ export default function Modal({ title, setModal }: ModalProtocol) {
           {list.map((e) => (
             <li key={e.id}>
               <span>{e.name}</span>
-              <FiX size={22} color="red" />
+              <FiX
+                size={22}
+                color="red"
+                onClick={() => {
+                  setList(list.filter((el) => el.id !== e.id));
+                }}
+              />
             </li>
           ))}
         </ListPattern>

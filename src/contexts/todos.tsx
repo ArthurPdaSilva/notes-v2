@@ -1,7 +1,6 @@
 import React, { createContext, useState, useCallback, useEffect } from 'react';
-import getTodo from '../services/getTodo';
+import GetTodos from '../services/GetTodos';
 import TodoType from '../types/TodoType';
-import UserType from '../types/UserType';
 
 interface AppContextInterface {
   todos: TodoType[];
@@ -22,7 +21,7 @@ export default function TodoProvider({ children }: { children: JSX.Element }) {
   }, [setTodos]);
 
   const getTodos = useCallback(() => {
-    return getTodo()
+    return GetTodos()
       .then((data) => {
         return data;
       })

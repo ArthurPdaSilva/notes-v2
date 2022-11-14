@@ -42,6 +42,11 @@ export const TitleContainer = styled.div`
     border-bottom: 1px solid gray;
     padding: var(--espacamentoElementos);
   }
+
+  & > h1,
+  & > h1 input {
+    width: 100%;
+  }
 `;
 
 export const ButtonAdd = styled.button`

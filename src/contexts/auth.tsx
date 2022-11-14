@@ -7,6 +7,7 @@ import Logout from '../services/Logout';
 interface AppContextInterface {
   signed: boolean;
   user: UserType | null;
+  saveChangeUser: (newUser: UserType) => void;
   logout: () => void;
   signUp: ({ name, email, password }: UserType) => void;
   signIn: ({ email, password }: UserType) => void;
@@ -26,8 +27,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
     ({ name, email, password }: UserType) => {
       Register(email, password, name)
         .then((data) => {
-          setUser(data);
-          storageUser(data as UserType);
+          saveChangeUser(data as UserType);
           alert('Bem vindo a plataforma!');
         })
         .catch(() => {
@@ -37,32 +37,35 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
     [setUser],
   );
 
-  const signIn = useCallback(
-    ({ email, password }: UserType) => {
-      Login(email, password)
-        .then((data) => {
-          setUser(data);
-          storageUser(data as UserType);
-          alert('Bem vindo de volta');
-        })
-        .catch(() => {
-          alert('Conta inexistente!');
-        });
-    },
-    [setUser],
-  );
+  const signIn = useCallback(({ email, password }: UserType) => {
+    Login(email, password)
+      .then((data) => {
+        saveChangeUser(data as UserType);
+        alert('Bem vindo de volta');
+      })
+      .catch(() => {
+        alert('Conta inexistente!');
+      });
+  }, []);
 
   function storageUser(user: UserType) {
     localStorage.setItem(
       'user',
       JSON.stringify({
-        uid: user.uid,
         name: user.name,
         email: user.email,
-        userPhoto: user.userPhoto ?? 'NotFound',
+        avatarUrl: user.avatarUrl ?? 'NotFound',
       }),
     );
   }
+
+  const saveChangeUser = useCallback(
+    (newUser: UserType) => {
+      setUser(newUser);
+      storageUser(newUser);
+    },
+    [setUser],
+  );
 
   const logout = useCallback(() => {
     Logout();
@@ -73,7 +76,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
 
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, logout, signIn, signUp }}
+      value={{ signed: !!user, user, saveChangeUser, logout, signIn, signUp }}
     >
       {children}
     </AuthContext.Provider>

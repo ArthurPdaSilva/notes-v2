@@ -25,12 +25,14 @@ export const ModalContainer = styled.div`
 
   & > div {
     ${FlexCentralize}
+    width: 100%;
     gap: var(--espacamentoElementos);
   }
 `;
 
 export const InputContainer = styled.div`
   ${FlexCenterElement}
+  width: 100%;
 
   & > input:focus,
   & > input:not(:placeholder-shown) {
@@ -40,5 +42,6 @@ export const InputContainer = styled.div`
   & > input {
     border: 1px solid gray;
     padding: var(--espacamentoElementos);
+    flex: 1;
   }
 `;

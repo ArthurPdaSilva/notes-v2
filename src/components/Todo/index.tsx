@@ -23,7 +23,7 @@ export default function Todo({ name, itens }: TodoType) {
         ))}
       </ListPattern>
       <ButtonAdd onClick={() => setModal(!modal)}>Adicionar Mais</ButtonAdd>
-      {modal && <Modal title="Lista" setModal={setModal} />}
+      {modal && <Modal title={name} setModal={setModal} />}
     </TodoContainer>
   );
 }
