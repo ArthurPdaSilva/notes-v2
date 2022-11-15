@@ -18,21 +18,17 @@ export default function Todo({ id, idTodo, name, message }: TodoType) {
   };
 
   const onUpdate = useCallback(async () => {
-    const todo = await UpdateTodo({
+    const todos = todoContext?.todos as TodoType[];
+    const index = todos.findIndex((e) => e.idTodo === idTodo);
+    todos[index].name = nameT;
+    todos[index].message = messageT;
+    todoContext?.saveTodos(todos);
+    await UpdateTodo({
       id,
       idTodo,
       name: nameT,
       message: messageT,
-    }).then((data) => {
-      return data as TodoType;
     });
-
-    const todos = todoContext?.todos as TodoType[];
-    const index = todos.findIndex((e) => e.idTodo === todo.idTodo);
-    todos[index].name = nameT;
-    todos[index].message = messageT;
-
-    todoContext?.saveTodos(todos);
   }, [nameT, messageT]);
 
   return (
