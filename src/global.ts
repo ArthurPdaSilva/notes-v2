@@ -11,6 +11,7 @@ export default createGlobalStyle`
     --corHeader-Footer-links-borders: #02040F;
     --espacamentoElementos: 10px;
     --arredondaMentoElementos: 5px;
+    --shadow: 2 0 7px rgba(0, 0, 0, 0.40);
   }
 
   * {
@@ -34,6 +35,8 @@ export default createGlobalStyle`
   input, button { border: none; }
 
   li { list-style: none; }
+
+  textarea { resize: none; }
 
   button, svg { cursor: pointer; }
 

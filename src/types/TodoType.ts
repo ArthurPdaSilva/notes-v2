@@ -1,7 +1,6 @@
-import ItemType from './ItemType';
-
 export default interface TodoType {
   id: string;
+  idTodo: string;
   name: string;
-  itens: ItemType[];
+  message: string;
 }

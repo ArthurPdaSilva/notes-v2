@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, FormContainer } from './formStyles';
-import { ButtonAdd, Container } from '../../patternStyles';
+import { Avatar, ButtonAdd, FormContainer } from './formStyles';
+import { Container } from '../../patternStyles';
 import UserType from '../../types/UserType';
 import { AuthContext } from '../../contexts/auth';
 import { FiUpload } from 'react-icons/fi';

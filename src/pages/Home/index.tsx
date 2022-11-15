@@ -1,14 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Modal from '../../components/Modal';
 import Todo from '../../components/Todo';
 import { AuthContext } from '../../contexts/auth';
 import { TodoContext } from '../../contexts/todos';
-import { ButtonAdd } from '../../patternStyles';
+import AddTodo from '../../services/AddTodo';
 import { MainContainer, SectionContainer } from './homeStyles';
 
 export default function Home() {
-  const [modal, setModal] = useState(false);
   const todoContext = useContext(TodoContext);
   const appContext = useContext(AuthContext);
 
@@ -23,22 +21,34 @@ export default function Home() {
     }
   }, []);
 
+  const handleDone = () => {
+    const newItem = {
+      id: appContext?.user?.uid as string,
+      idTodo: uuidv4(),
+      name: '',
+      message: '',
+    };
+
+    AddTodo(newItem).catch((e: any) => console.log(e));
+
+    todoContext?.saveTodos([...todoContext.todos, newItem]);
+  };
+
   return (
     <MainContainer>
       <h1>Faça TODOs de um jeito fácil : )</h1>
       <SectionContainer>
         {todoContext?.todos.map((e) => (
-          <Todo name={e.name} itens={e.itens} key={uuidv4()} id={e.id} />
+          <Todo
+            name={e.name}
+            message={e.message}
+            idTodo={e.idTodo}
+            id={e.id}
+            key={uuidv4()}
+          />
         ))}
-        <ButtonAdd
-          onClick={() => {
-            setModal(!modal);
-          }}
-        >
-          Criar nova lista
-        </ButtonAdd>
+        <button onClick={handleDone}>+</button>
       </SectionContainer>
-      {modal && <Modal setModal={setModal} />}
     </MainContainer>
   );
 }

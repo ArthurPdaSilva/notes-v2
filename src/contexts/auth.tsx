@@ -52,6 +52,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
     localStorage.setItem(
       'user',
       JSON.stringify({
+        uid: user.uid,
         name: user.name,
         email: user.email,
         avatarUrl: user.avatarUrl ?? 'NotFound',

@@ -1,29 +1,59 @@
-import React, { useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { FiX } from 'react-icons/fi';
-import { ButtonAdd, ListPattern, TitleContainer } from '../../patternStyles';
+import { TodoContext } from '../../contexts/todos';
+import RemoveTodo from '../../services/RemoveTodo';
+import UpdateTodo from '../../services/UpdateTodo';
 import TodoType from '../../types/TodoType';
-import Modal from '../Modal';
-import { TodoContainer } from './todoStyles';
+import { TitleContainer, TodoContainer } from './todoStyles';
 
-export default function Todo({ name, itens }: TodoType) {
-  const [modal, setModal] = useState(false);
+export default function Todo({ id, idTodo, name, message }: TodoType) {
+  const todoContext = useContext(TodoContext);
+  const [nameT, setNameT] = useState(name);
+  const [messageT, setMessageT] = useState(message);
+
+  const onRemove = () => {
+    RemoveTodo(idTodo);
+    const newList = todoContext?.todos.filter((e) => e.idTodo !== idTodo);
+    todoContext?.saveTodos(newList as TodoType[]);
+  };
+
+  const onUpdate = useCallback(async () => {
+    const todo = await UpdateTodo({
+      id,
+      idTodo,
+      name: nameT,
+      message: messageT,
+    }).then((data) => {
+      return data as TodoType;
+    });
+
+    const todos = todoContext?.todos as TodoType[];
+    const index = todos.findIndex((e) => e.idTodo === todo.idTodo);
+    todos[index].name = nameT;
+    todos[index].message = messageT;
+
+    todoContext?.saveTodos(todos);
+  }, [nameT, messageT]);
 
   return (
     <TodoContainer>
       <TitleContainer>
-        <h3>{name}</h3>
-        <FiX size={22} color="gray" />
+        <input
+          value={nameT}
+          onChange={(e) => setNameT(e.target.value)}
+          placeholder="Adicione um título"
+          maxLength={20}
+          onBlur={onUpdate}
+        />
+        <FiX size={22} color="gray" onClick={onRemove} />
       </TitleContainer>
-      <ListPattern>
-        {itens.map((item) => (
-          <li key={item.id}>
-            <span>{item.name}</span>
-            <FiX size={22} color="red" />
-          </li>
-        ))}
-      </ListPattern>
-      <ButtonAdd onClick={() => setModal(!modal)}>Adicionar Mais</ButtonAdd>
-      {modal && <Modal title={name} setModal={setModal} />}
+      <textarea
+        value={messageT}
+        maxLength={308}
+        placeholder="Digite alguma coisa"
+        onChange={(e) => setMessageT(e.target.value)}
+        onBlur={onUpdate}
+      />
     </TodoContainer>
   );
 }

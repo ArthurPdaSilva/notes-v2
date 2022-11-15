@@ -5,15 +5,16 @@ import TodoType from '../types/TodoType';
 export default async function (): Promise<TodoType[]> {
   const data = await getDocs(collection(db, 'lists'))
     .then((snapshot) => {
-      const lista: TodoType[] = [];
+      const list: TodoType[] = [];
       snapshot.forEach((doc) => {
-        lista.push({
+        list.push({
           id: doc.data().idUser,
-          name: doc.data().nameList,
-          itens: doc.data().itens,
+          idTodo: doc.data().idTodo,
+          name: doc.data().name,
+          message: doc.data().message,
         });
       });
-      return lista;
+      return list;
     })
     .catch((e) => {
       throw new Error(e);

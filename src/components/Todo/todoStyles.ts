@@ -3,13 +3,33 @@ import { ContainerPattern, FlexMenu } from '../../patternStyles';
 
 export const TodoContainer = styled.div`
   ${ContainerPattern}
-  ${FlexMenu}
+  display: flex;
   flex-direction: column;
-  gap: var(--espacamentoElementos);
+  box-shadow: var(--shadow);
+  gap: calc(var(--espacamentoElementos) + 10px);
   height: 45vh;
-  min-width: 20vw;
+  width: 20vw;
+
+  textarea {
+    font-size: 1rem;
+    overflow-y: hidden;
+    height: 80%;
+    border: none;
+  }
 
   @media (max-width: 600px) {
-    min-width: 60vw;
+    width: 60vw;
+  }
+`;
+
+export const TitleContainer = styled.div`
+  ${FlexMenu}
+  width: 100%;
+  gap: var(--espacamentoElementos);
+
+  input {
+    width: 70%;
+    font-size: 1rem;
+    font-weight: bold;
   }
 `;

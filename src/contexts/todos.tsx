@@ -26,7 +26,7 @@ export default function TodoProvider({ children }: { children: JSX.Element }) {
         return data;
       })
       .catch(() => {
-        alert('Falha ao recuperar listas');
+        alert('Falha ao recuperar ToDos');
         return [];
       });
   }, [setTodos]);
