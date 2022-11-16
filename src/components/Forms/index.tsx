@@ -7,6 +7,7 @@ import { AuthContext } from '../../contexts/auth';
 import { FiUpload } from 'react-icons/fi';
 import PhotoStorage from '../../services/PhotoStorage';
 import UpdateUser from '../../services/UpdateUser';
+import { toast } from 'react-toastify';
 
 type FormProtocol = {
   title: string;
@@ -55,7 +56,7 @@ export default function Forms({
           setImageAvatar(image);
           setAvatarUrl(URL.createObjectURL(image));
         } else {
-          alert('Envie uma imagem válida!');
+          toast.error('Envie uma imagem válida!');
           return null;
         }
       }
@@ -80,6 +81,7 @@ export default function Forms({
             userForm.name,
           ).then((newValue) => {
             appContext?.saveChangeUser(newValue as UserType);
+            toast.success('Alterações feitas com sucesso!');
           });
         }
       } else {

@@ -3,6 +3,7 @@ import UserType from '../types/UserType';
 import Login from '../services/Login';
 import Register from '../services/Register';
 import Logout from '../services/Logout';
+import { toast } from 'react-toastify';
 
 interface AppContextInterface {
   signed: boolean;
@@ -28,10 +29,10 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
       Register(email, password, name)
         .then((data) => {
           saveChangeUser(data as UserType);
-          alert('Bem vindo a plataforma!');
+          toast.success('Bem vindo a plataforma!');
         })
         .catch(() => {
-          alert('Conta já criada ou problema na internet!');
+          toast.error('Conta já criada ou problema na internet!');
         });
     },
     [setUser],
@@ -41,10 +42,10 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
     Login(email, password)
       .then((data) => {
         saveChangeUser(data as UserType);
-        alert('Bem vindo de volta');
+        toast.success('Bem vindo de volta');
       })
       .catch(() => {
-        alert('Conta inexistente!');
+        toast.error('Conta inexistente!');
       });
   }, []);
 
@@ -72,7 +73,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
     Logout();
     setUser(null);
     localStorage.removeItem('user');
-    alert('Saindo da plataforma');
+    toast.success('Saindo da plataforma');
   }, [setUser]);
 
   return (

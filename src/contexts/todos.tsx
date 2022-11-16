@@ -1,6 +1,7 @@
 import React, { createContext, useState, useCallback, useEffect } from 'react';
 import GetTodos from '../services/GetTodos';
 import TodoType from '../types/TodoType';
+import { toast } from 'react-toastify';
 
 interface AppContextInterface {
   todos: TodoType[];
@@ -26,7 +27,7 @@ export default function TodoProvider({ children }: { children: JSX.Element }) {
         return data;
       })
       .catch(() => {
-        alert('Falha ao recuperar ToDos');
+        toast.error('Falha ao recuperar ToDos');
         return [];
       });
   }, [setTodos]);
