@@ -10,10 +10,11 @@ export const TodoContainer = styled.div`
   height: 45vh;
   width: 20vw;
 
-  textarea, input {
+  textarea,
+  input {
     background-color: transparent;
   }
-  
+
   textarea {
     font-size: 1rem;
     overflow-y: hidden;
