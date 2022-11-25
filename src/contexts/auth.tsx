@@ -32,7 +32,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
           toast.success('Bem vindo a plataforma!');
         })
         .catch(() => {
-          toast.error('Conta já criada ou problema na internet!');
+          toast.error('Conta já criada!');
         });
     },
     [setUser],
@@ -42,10 +42,10 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
     Login(email, password)
       .then((data) => {
         saveChangeUser(data as UserType);
-        toast.success('Bem vindo de volta');
+        toast.success(`Bem vindo de volta, ${data?.name}!`);
       })
       .catch(() => {
-        toast.error('Conta inexistente!');
+        toast.error('Email ou senha inconrretos!');
       });
   }, []);
 
@@ -56,7 +56,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
         uid: user.uid,
         name: user.name,
         email: user.email,
-        avatarUrl: user.avatarUrl ?? 'NotFound',
+        avatarUrl: user.avatarUrl,
       }),
     );
   }

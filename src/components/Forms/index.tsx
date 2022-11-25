@@ -29,7 +29,11 @@ export default function Forms({
     password: '',
   });
   const [avatarUrl, setAvatarUrl] = useState(
-    (appContext?.user?.avatarUrl as string) ?? 'assets/user.png',
+    appContext?.user?.avatarUrl !== undefined
+      ? (appContext?.user?.avatarUrl as string).length < 1
+        ? 'assets/user.png'
+        : (appContext?.user?.avatarUrl as string)
+      : '',
   );
   const [imageAvatar, setImageAvatar] = useState<File | null>(null);
 
@@ -137,7 +141,7 @@ export default function Forms({
             name="password"
             value={userForm.password}
             onChange={(e) => handleChange(e)}
-            minLength={5}
+            minLength={8}
             required
           />
         )}
