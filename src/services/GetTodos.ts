@@ -8,7 +8,7 @@ export default async function (): Promise<TodoType[]> {
       const list: TodoType[] = [];
       snapshot.forEach((doc) => {
         list.push({
-          id: doc.data().idUser,
+          idUser: doc.data().idUser,
           idTodo: doc.data().idTodo,
           name: doc.data().name,
           message: doc.data().message,

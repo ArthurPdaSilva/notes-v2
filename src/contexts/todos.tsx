@@ -30,7 +30,7 @@ export default function TodoProvider({ children }: { children: JSX.Element }) {
         toast.error('Falha ao recuperar ToDos');
         return [];
       });
-  }, [setTodos]);
+  }, []);
 
   const saveTodos = useCallback(
     (todosSave: TodoType[]) => {

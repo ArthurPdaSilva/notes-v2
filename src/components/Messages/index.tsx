@@ -1,51 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../contexts/auth';
+import { MessagesContext } from '../../contexts/message';
 import { PerfilUser, ReceiveMessages, Receiving } from './MessagesStyles';
 
 export default function Messages() {
+  const messagesContext = useContext(MessagesContext);
+  const appContext = useContext(AuthContext);
+
   return (
     <ReceiveMessages>
-      <Receiving>
-        <img src="assets/user.png" alt="Imagem do usuário X" />
-        <PerfilUser>
-          <small>User</small>
-          <span>Mensagens de outros usuários</span>
-        </PerfilUser>
-      </Receiving>
-      <Receiving>
-        <img src="assets/user.png" alt="Imagem do usuário X" />
-        <PerfilUser>
-          <small>User</small>
-          <span>Mensagens de outros usuários</span>
-        </PerfilUser>
-      </Receiving>
-      <Receiving isUser>
-        <img src="assets/user.png" alt="Imagem do usuário X" />
-        <PerfilUser isUser>
-          <small>Eu</small>
-          <span>Mensagens de outros usuários</span>
-        </PerfilUser>
-      </Receiving>
-      <Receiving>
-        <img src="assets/user.png" alt="Imagem do usuário X" />
-        <PerfilUser>
-          <small>User</small>
-          <span>Mensagens de outros usuários</span>
-        </PerfilUser>
-      </Receiving>
-      <Receiving>
-        <img src="assets/user.png" alt="Imagem do usuário X" />
-        <PerfilUser>
-          <small>User</small>
-          <span>Mensagens de outros usuários</span>
-        </PerfilUser>
-      </Receiving>
-      <Receiving>
-        <img src="assets/user.png" alt="Imagem do usuário X" />
-        <PerfilUser>
-          <small>User</small>
-          <span>Mensagens de outros usuários</span>
-        </PerfilUser>
-      </Receiving>
+      {messagesContext?.messages.map((message) => (
+        <Receiving
+          key={message.idMessage}
+          isUser={appContext?.user?.uid === message.idUser}
+        >
+          <img
+            src={
+              message.imgUser !== undefined
+                ? (message.imgUser as string).length < 1
+                  ? 'assets/user.png'
+                  : (message.imgUser as string)
+                : ''
+            }
+            alt="Imagem do usuário X"
+          />
+          <PerfilUser isUser={appContext?.user?.uid === message.idUser}>
+            <small>{message.name}</small>
+            <span>{message.message}</span>
+          </PerfilUser>
+        </Receiving>
+      ))}
     </ReceiveMessages>
   );
 }

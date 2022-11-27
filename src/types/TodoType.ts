@@ -1,5 +1,5 @@
 export default interface TodoType {
-  id: string;
+  idUser: string;
   idTodo: string;
   name: string;
   message: string;

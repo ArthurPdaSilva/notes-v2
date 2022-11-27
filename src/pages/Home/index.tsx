@@ -14,7 +14,7 @@ export default function Home() {
     if (todoContext?.todos.length === 0) {
       todoContext?.getTodos().then((data) => {
         const newTodo = data.filter(
-          (item) => item.id === appContext?.user?.uid,
+          (item) => item.idUser === appContext?.user?.uid,
         );
         todoContext.saveTodos(newTodo);
       });
@@ -23,7 +23,7 @@ export default function Home() {
 
   const handleDone = () => {
     const newItem = {
-      id: appContext?.user?.uid as string,
+      idUser: appContext?.user?.uid as string,
       idTodo: uuidv4(),
       name: '',
       message: '',
@@ -36,14 +36,14 @@ export default function Home() {
 
   return (
     <MainContainer>
-      <h1>Faça TODOs de um jeito fácil : )</h1>
+      <h1>Faça TODOs de um jeito fácil 😎</h1>
       <SectionContainer>
         {todoContext?.todos.map((e) => (
           <Todo
             name={e.name}
             message={e.message}
             idTodo={e.idTodo}
-            id={e.id}
+            idUser={e.idUser}
             key={uuidv4()}
           />
         ))}
