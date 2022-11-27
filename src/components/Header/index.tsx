@@ -19,7 +19,10 @@ export default function Header() {
       <h1>Notes</h1>
       <MenuContainer>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Página Inicial</Link>
+        </li>
+        <li>
+          <Link to="/community">Comunidade</Link>
         </li>
         <li>
           <Link to="/profile">Perfil</Link>

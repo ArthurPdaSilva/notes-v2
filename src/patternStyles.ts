@@ -6,6 +6,11 @@ export const ContainerPattern = css`
   padding: var(--espacamentoElementos);
 `;
 
+export const ContainerColumn = css`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const FlexCenterElement = css`
   display: flex;
   align-items: center;
@@ -26,4 +31,9 @@ export const Container = styled.div`
   ${FlexCentralize}
   width: 100%;
   height: 100%;
+
+  & > h1 {
+    color: var(--corContainers-titulos);
+    margin-bottom: var(--espacamentoElementos);
+  }
 `;

@@ -12,6 +12,7 @@ import Error from './Error';
 import Header from '../components/Header';
 import { Container } from '../patternStyles';
 import { AuthContext } from '../contexts/auth';
+import Community from './Community';
 
 // // Route Validation
 function PrivateRoute({ children }: { children: JSX.Element }) {
@@ -41,6 +42,14 @@ export default function Routes() {
         element={
           <PrivateRoute>
             <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/community"
+        element={
+          <PrivateRoute>
+            <Community />
           </PrivateRoute>
         }
       />

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { FlexCenterElement, FlexCentralize } from '../../patternStyles';
+import { ContainerColumn, FlexCenterElement } from '../../patternStyles';
 
 export const MainContainer = styled.main`
-  display: flex;
-  flex-direction: column;
+  ${ContainerColumn}
   justify-content: space-around;
   flex: 1;
   padding: var(--espacamentoElementos);

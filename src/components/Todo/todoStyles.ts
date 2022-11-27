@@ -1,10 +1,13 @@
 import styled from 'styled-components';
-import { ContainerPattern, FlexMenu } from '../../patternStyles';
+import {
+  ContainerColumn,
+  ContainerPattern,
+  FlexMenu,
+} from '../../patternStyles';
 
 export const TodoContainer = styled.div`
   ${ContainerPattern}
-  display: flex;
-  flex-direction: column;
+  ${ContainerColumn}
   box-shadow: var(--shadow);
   gap: calc(var(--espacamentoElementos) + 10px);
   height: 45vh;

@@ -11,6 +11,7 @@ export const HeaderContainer = styled.header`
 
 export const MenuContainer = styled.ul`
   ${FlexMenu}
+  gap: 10px;
 
   & > li a,
   & > li button {
@@ -20,12 +21,12 @@ export const MenuContainer = styled.ul`
     font-size: 1.4rem;
     color: var(--corContainers-titulos);
     background-color: transparent;
-    transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.5s;
   }
 
   & > li a:hover,
   & > li button:hover {
-    background-color: var(--corBackground);
+    transform: scale(1.1);
     border-radius: var(--arredondaMentoElementos);
   }
 `;

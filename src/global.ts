@@ -6,8 +6,8 @@ export default createGlobalStyle`
     --corBackground: #002642;
     --corBotaoAdd: #00a878;
     --corBotaoAddHover: #007352;
-    --corBotaoEditar: #FFB100;
-    --corBotaoRemover: #ED6A5A;
+    --corMensagens: #00A5CF;
+    --corBotaoHover: #006984;
     --corHeader-Footer-links-borders: #02040F;
     --espacamentoElementos: 10px;
     --arredondaMentoElementos: 5px;
