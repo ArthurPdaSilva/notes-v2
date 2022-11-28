@@ -23,7 +23,7 @@ export default createGlobalStyle`
 
   body, #root, html { height: 100%; }
 
-  body, #root, html, header, main { width: 100%; }
+  body, #root, html, header, main { width: 100%; max-width: 100%; }
 
   body {
     font-family: 'Poppins', sans-serif;

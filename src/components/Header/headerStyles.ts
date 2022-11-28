@@ -7,10 +7,25 @@ export const HeaderContainer = styled.header`
   color: var(--corContainers-titulos);
   padding: var(--espacamentoElementos);
   margin-bottom: 20px;
+
+  & > svg {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    & > svg {
+      display: block;
+    }
+  }
 `;
 
-export const MenuContainer = styled.ul`
+type Props = {
+  isVisible: boolean;
+};
+
+export const MenuContainer = styled.ul<Props>`
   ${FlexMenu}
+  transition: all ease-in-out 0.5s;
   gap: 10px;
 
   & > li a,
@@ -28,5 +43,14 @@ export const MenuContainer = styled.ul`
   & > li button:hover {
     transform: scale(1.1);
     border-radius: var(--arredondaMentoElementos);
+  }
+
+  @media (max-width: 600px) {
+    position: fixed;
+    background-color: var(--corHeader-Footer-links-borders);
+    top: 50px;
+    right: ${(props) => (props.isVisible ? '0' : '-100%')};
+    width: 100%;
+    flex-direction: column;
   }
 `;

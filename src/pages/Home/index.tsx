@@ -4,6 +4,7 @@ import Todo from '../../components/Todo';
 import { AuthContext } from '../../contexts/auth';
 import { TodoContext } from '../../contexts/todos';
 import AddTodo from '../../services/AddTodo';
+import GetTodos from '../../services/GetTodos';
 import { MainContainer, SectionContainer } from './homeStyles';
 
 export default function Home() {
@@ -12,11 +13,11 @@ export default function Home() {
 
   useEffect(() => {
     if (todoContext?.todos.length === 0) {
-      todoContext?.getTodos().then((data) => {
+      GetTodos().then((data) => {
         const newTodo = data.filter(
           (item) => item.idUser === appContext?.user?.uid,
         );
-        todoContext.saveTodos(newTodo);
+        todoContext.setTodos(newTodo);
       });
     }
   }, []);
@@ -31,7 +32,7 @@ export default function Home() {
 
     AddTodo(newItem).catch((e: any) => console.log(e));
 
-    todoContext?.saveTodos([...todoContext.todos, newItem]);
+    todoContext?.setTodos([...todoContext.todos, newItem]);
   };
 
   return (

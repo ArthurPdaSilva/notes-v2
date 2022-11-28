@@ -14,7 +14,7 @@ export default function Todo({ idUser, idTodo, name, message }: TodoType) {
   const onRemove = () => {
     RemoveTodo(idTodo);
     const newList = todoContext?.todos.filter((e) => e.idTodo !== idTodo);
-    todoContext?.saveTodos(newList as TodoType[]);
+    todoContext?.setTodos(newList as TodoType[]);
   };
 
   const onUpdate = useCallback(async () => {
@@ -22,7 +22,7 @@ export default function Todo({ idUser, idTodo, name, message }: TodoType) {
     const index = todos.findIndex((e) => e.idTodo === idTodo);
     todos[index].name = nameT;
     todos[index].message = messageT;
-    todoContext?.saveTodos(todos);
+    todoContext?.setTodos(todos);
     await UpdateTodo({
       idUser,
       idTodo,

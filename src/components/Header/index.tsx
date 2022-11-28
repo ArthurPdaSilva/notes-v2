@@ -1,23 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { HeaderContainer, MenuContainer } from './headerStyles';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 import { TodoContext } from '../../contexts/todos';
+import { FiMenu } from 'react-icons/fi';
 
 export default function Header() {
   const appContext = useContext(AuthContext);
   const todoContext = useContext(TodoContext);
+  const [visible, setVisible] = useState(false);
 
   const handleClose = () => {
     appContext?.logout();
     todoContext?.setTodos([]);
-    localStorage.removeItem('todos');
   };
 
   return (
     <HeaderContainer>
       <h1>Notes</h1>
-      <MenuContainer>
+      <FiMenu size={32} onClick={() => setVisible(!visible)} />
+      <MenuContainer isVisible={visible}>
         <li>
           <Link to="/">Página Inicial</Link>
         </li>
