@@ -14,12 +14,12 @@ export default async function (
       await setDoc(doc(db, `users/${uid}`), {
         uid: uid,
         name,
-        avatarUrl: null,
+        avatarUrl: ' ',
         email,
       });
       return {
         uid: uid,
-        userPhoto: null,
+        avatarUrl: ' ',
         name,
         email,
         password: '',

@@ -46,7 +46,7 @@ export const MenuContainer = styled.ul<Props>`
   }
 
   @media (max-width: 600px) {
-    position: fixed;
+    position: absolute;
     background-color: var(--corHeader-Footer-links-borders);
     top: 57px;
     right: ${(props) => (props.isVisible ? '0' : '-100%')};
