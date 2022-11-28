@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Send = styled.div`
+export const Send = styled.form`
   display: flex;
   padding: var(--espacamentoElementos);
   width: 100%;

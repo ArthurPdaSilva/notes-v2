@@ -30,10 +30,10 @@ export default function Forms({
   });
   const [avatarUrl, setAvatarUrl] = useState(
     appContext?.user?.avatarUrl !== undefined
-      ? (appContext?.user?.avatarUrl as string).length < 1
+      ? (appContext?.user?.avatarUrl as string).length <= 1
         ? 'assets/user.png'
         : (appContext?.user?.avatarUrl as string)
-      : '',
+      : ' ',
   );
   const [imageAvatar, setImageAvatar] = useState<File | null>(null);
 

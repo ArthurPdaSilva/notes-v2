@@ -8,4 +8,8 @@ export const MessagesContainer = styled.div`
   justify-content: space-around;
   width: 55vw;
   height: 70vh;
+
+  @media (max-width: 600px) {
+    width: 100vw;
+  }
 `;

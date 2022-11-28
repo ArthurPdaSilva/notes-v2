@@ -29,6 +29,17 @@ export const Receiving = styled.div<Props>`
   gap: var(--espacamentoElementos);
   padding: var(--espacamentoElementos);
   flex-direction: ${(props) => (props.isUser ? 'row-reverse' : 'row')};
+  animation: pop 0.25s ease;
+
+  @keyframes pop {
+    from {
+      transform: scale(0);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
 
   img {
     width: 32px;

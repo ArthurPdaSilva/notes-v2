@@ -56,7 +56,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
         uid: user.uid,
         name: user.name,
         email: user.email,
-        avatarUrl: user.avatarUrl,
+        avatarUrl: user.avatarUrl ?? ' ',
       }),
     );
   }
