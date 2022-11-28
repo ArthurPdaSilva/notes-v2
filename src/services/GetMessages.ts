@@ -19,7 +19,7 @@ export default async function (): Promise<MessageType[]> {
         }
         count++;
       });
-      return list.reverse();
+      return list;
     })
     .catch((e) => {
       throw new Error(e);

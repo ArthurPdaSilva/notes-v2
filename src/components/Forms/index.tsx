@@ -8,6 +8,9 @@ import { FiUpload } from 'react-icons/fi';
 import PhotoStorage from '../../services/PhotoStorage';
 import UpdateUser from '../../services/UpdateUser';
 import { toast } from 'react-toastify';
+import { MessagesContext } from '../../contexts/message';
+import UpdateMessage from '../../services/UpdateMessage';
+import MessageType from '../../types/MessageType';
 
 type FormProtocol = {
   title: string;
@@ -23,6 +26,7 @@ export default function Forms({
   linkText,
 }: FormProtocol) {
   const appContext = useContext(AuthContext);
+  const messagesContext = useContext(MessagesContext);
   const [userForm, setUserForm] = useState<UserType>({
     name: '',
     email: '',
@@ -85,6 +89,15 @@ export default function Forms({
             userForm.name,
           ).then((newValue) => {
             appContext?.saveChangeUser(newValue as UserType);
+            const mensagens = messagesContext?.messages as MessageType[];
+            mensagens.forEach((item) => {
+              if (item.idUser === appContext?.user?.uid) {
+                item.name = appContext.user.name;
+                item.imgUser = appContext.user.avatarUrl;
+                UpdateMessage(item);
+              }
+            });
+            messagesContext?.setMessages(mensagens);
             toast.success('Alterações feitas com sucesso!');
           });
         }

@@ -3,7 +3,7 @@ import { db } from '../firebase';
 import TodoType from '../types/TodoType';
 
 export default async function (): Promise<TodoType[]> {
-  const data = await getDocs(collection(db, 'lists'))
+  const data = await getDocs(collection(db, 'todos'))
     .then((snapshot) => {
       const list: TodoType[] = [];
       snapshot.forEach((doc) => {

@@ -3,7 +3,7 @@ import { db } from '../firebase';
 import TodoType from '../types/TodoType';
 
 export default async function (todo: TodoType) {
-  await setDoc(doc(db, `lists/${todo.idTodo}`), {
+  await setDoc(doc(db, `todos/${todo.idTodo}`), {
     idUser: todo.idUser,
     idTodo: todo.idTodo,
     name: todo.name,

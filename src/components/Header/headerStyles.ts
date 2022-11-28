@@ -48,7 +48,7 @@ export const MenuContainer = styled.ul<Props>`
   @media (max-width: 600px) {
     position: fixed;
     background-color: var(--corHeader-Footer-links-borders);
-    top: 50px;
+    top: 57px;
     right: ${(props) => (props.isVisible ? '0' : '-100%')};
     width: 100%;
     flex-direction: column;
