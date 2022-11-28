@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { toast } from 'react-toastify';
 import { v4 } from 'uuid';
 import { AuthContext } from '../../contexts/auth';
 import { MessagesContext } from '../../contexts/message';
