@@ -4,6 +4,9 @@ import Login from '../services/Login';
 import Register from '../services/Register';
 import Logout from '../services/Logout';
 import { toast } from 'react-toastify';
+import PhotoStorage from '../services/PhotoStorage';
+import UpdateImage from '../services/UpdateImage';
+import UpdateName from '../services/UpdateName';
 
 interface AppContextInterface {
   signed: boolean;
@@ -12,6 +15,7 @@ interface AppContextInterface {
   logout: () => void;
   signUp: ({ name, email, password }: UserType) => void;
   signIn: ({ email, password }: UserType) => void;
+  updateUser: (imageAvatar: File | null, name: string) => Promise<void>;
 }
 
 export const AuthContext = createContext<AppContextInterface | null>(null);
@@ -61,6 +65,28 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
     );
   }
 
+  const updateUser = useCallback(
+    async (imageAvatar: File | null, name: string) => {
+      const changeUser = user as UserType;
+      if (imageAvatar) {
+        const ref = PhotoStorage(changeUser.uid as string, imageAvatar);
+        changeUser.avatarUrl = await UpdateImage(
+          changeUser.uid as string,
+          await ref.then((value) => {
+            return value;
+          }),
+        ).then((image) => image as string);
+      }
+
+      changeUser.name = await UpdateName(changeUser.uid as string, name).then(
+        (name) => name as string,
+      );
+
+      saveChangeUser(changeUser);
+    },
+    [user],
+  );
+
   const saveChangeUser = useCallback(
     (newUser: UserType) => {
       setUser(newUser);
@@ -78,7 +104,15 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
 
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, saveChangeUser, logout, signIn, signUp }}
+      value={{
+        signed: !!user,
+        user,
+        saveChangeUser,
+        logout,
+        signIn,
+        signUp,
+        updateUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

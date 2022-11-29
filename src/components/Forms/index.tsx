@@ -5,13 +5,8 @@ import { Container } from '../../patternStyles';
 import UserType from '../../types/UserType';
 import { AuthContext } from '../../contexts/auth';
 import { FiUpload } from 'react-icons/fi';
-import PhotoStorage from '../../services/PhotoStorage';
 import { toast } from 'react-toastify';
 import { MessagesContext } from '../../contexts/message';
-import UpdateMessage from '../../services/UpdateMessage';
-import MessageType from '../../types/MessageType';
-import UpdateImage from '../../services/UpdateImage';
-import UpdateName from '../../services/UpdateName';
 
 type FormProtocol = {
   title: string;
@@ -78,31 +73,14 @@ export default function Forms({
       e.preventDefault();
       if (type === 'profile') {
         const user = appContext?.user as UserType;
-        if (imageAvatar) {
-          const ref = PhotoStorage(user.uid as string, imageAvatar);
-          user.avatarUrl = await UpdateImage(
+        appContext?.updateUser(imageAvatar, userForm.name).then(() => {
+          toast.success('Alterações feitas com sucesso!');
+          messagesContext?.updateMessages(
             user.uid as string,
-            await ref.then((value) => {
-              return value;
-            }),
-          ).then((image) => image as string);
-        }
-
-        user.name = await UpdateName(user.uid as string, userForm.name).then(
-          (name) => name as string,
-        );
-
-        appContext?.saveChangeUser(user);
-        const mensagens = messagesContext?.messages as MessageType[];
-        mensagens.forEach((item) => {
-          if (item.idUser === appContext?.user?.uid) {
-            item.name = appContext.user.name;
-            item.imgUser = appContext.user.avatarUrl;
-            UpdateMessage(item);
-          }
+            user.name,
+            user.avatarUrl as string,
+          );
         });
-        messagesContext?.setMessages(mensagens);
-        toast.success('Alterações feitas com sucesso!');
       } else {
         if (type === 'login') appContext?.signIn(userForm);
         else {
