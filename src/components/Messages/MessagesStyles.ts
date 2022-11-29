@@ -22,6 +22,10 @@ export const PerfilUser = styled.div<Props>`
   background: ${(props) =>
     props.isUser ? 'var(--corMensagens)' : 'transparent'};
   color: ${(props) => (props.isUser ? 'white' : 'black')};
+
+  & > span {
+    word-break: break-all;
+  }
 `;
 
 export const Receiving = styled.div<Props>`
