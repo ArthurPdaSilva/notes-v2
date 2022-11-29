@@ -8,6 +8,7 @@ export const Send = styled.form`
   input {
     flex: 1;
     background: transparent;
+    font-size: 1.1rem;
   }
 
   button {

@@ -11,5 +11,13 @@ export const MessagesContainer = styled.div`
 
   @media (max-width: 600px) {
     width: 100vw;
+    height: 80vh;
+    border-radius: 0;
+  }
+`;
+
+export const Title = styled.h1`
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
