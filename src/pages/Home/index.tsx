@@ -28,6 +28,7 @@ export default function Home() {
       idTodo: uuidv4(),
       name: '',
       message: '',
+      created: new Date(),
     };
 
     AddTodo(newItem).catch((e: any) => console.log(e));
@@ -45,6 +46,7 @@ export default function Home() {
             message={e.message}
             idTodo={e.idTodo}
             idUser={e.idUser}
+            created={e.created}
             key={uuidv4()}
           />
         ))}

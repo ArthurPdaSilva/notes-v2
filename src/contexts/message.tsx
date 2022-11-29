@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
 import GetMessages from '../services/GetMessages';
 import MessageType from '../types/MessageType';
 
@@ -19,9 +18,9 @@ export default function MessagesProvider({
 
   useEffect(() => {
     async function loadingMessages() {
-      await GetMessages()
-        .then((data) => setMessages(data))
-        .catch(() => toast.error('Não foi possível recuperar as mensagens'));
+      await GetMessages().then((data) => {
+        setMessages(data);
+      });
     }
     loadingMessages();
   }, [setMessages]);

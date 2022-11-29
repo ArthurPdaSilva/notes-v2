@@ -1,7 +1,6 @@
-export default interface MessageType {
-  idUser: string;
+import CollectionType from './CollectionType';
+
+export default interface MessageType extends CollectionType {
   idMessage: string;
   imgUser?: string;
-  name: string;
-  message: string;
 }

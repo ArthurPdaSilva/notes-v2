@@ -8,5 +8,6 @@ export default async function (todo: TodoType) {
     idTodo: todo.idTodo,
     name: todo.name,
     message: todo.message,
+    created: todo.created,
   });
 }

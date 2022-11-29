@@ -9,5 +9,6 @@ export default async function (message: MessageType) {
     imgUser: message.imgUser,
     name: message.name,
     message: message.message,
+    created: message.created,
   });
 }

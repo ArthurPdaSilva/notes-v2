@@ -22,6 +22,7 @@ export default function SendMessages() {
         message: message,
         name: nowUser.name,
         imgUser: nowUser.avatarUrl,
+        created: new Date(),
       };
       const messageArray = messagesContext?.messages as MessageType[];
       AddMessages(newMessage).then(() => {
