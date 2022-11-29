@@ -1,26 +1,17 @@
 import { doc, updateDoc } from 'firebase/firestore';
-import { getDownloadURL, StorageReference } from 'firebase/storage';
 import { db } from '../firebase';
-import UserType from '../types/UserType';
 
 export default async function (
-  user: UserType,
-  storageRef: StorageReference,
+  id: string,
   name: string,
-): Promise<UserType | void> {
-  return await getDownloadURL(storageRef).then(async (url) => {
-    const urlFoto = url;
-    return await updateDoc(doc(db, 'users', user.uid as string), {
-      avatarUrl: urlFoto,
-      name: name,
+): Promise<string | void> {
+  return await updateDoc(doc(db, 'users', id), {
+    name: name,
+  })
+    .then(() => {
+      return name;
     })
-      .then(() => {
-        user.name = name;
-        user.avatarUrl = urlFoto;
-        return user;
-      })
-      .catch((e) => {
-        throw new Error(e);
-      });
-  });
+    .catch((e) => {
+      throw new Error(e);
+    });
 }

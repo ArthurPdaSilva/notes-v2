@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { MessagesContext } from '../../contexts/message';
 import UpdateMessage from '../../services/UpdateMessage';
 import MessageType from '../../types/MessageType';
+import UpdateImage from '../../services/UpdateImage';
 
 type FormProtocol = {
   title: string;
@@ -76,31 +77,32 @@ export default function Forms({
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (type === 'profile') {
+        const user = appContext?.user as UserType;
         if (imageAvatar) {
-          const ref = PhotoStorage(
-            appContext?.user?.uid as string,
-            imageAvatar,
-          );
-          await UpdateUser(
-            appContext?.user as UserType,
+          const ref = PhotoStorage(user.uid as string, imageAvatar);
+          user.avatarUrl = await UpdateImage(
+            user.uid as string,
             await ref.then((value) => {
               return value;
             }),
-            userForm.name,
-          ).then((newValue) => {
-            appContext?.saveChangeUser(newValue as UserType);
-            const mensagens = messagesContext?.messages as MessageType[];
-            mensagens.forEach((item) => {
-              if (item.idUser === appContext?.user?.uid) {
-                item.name = appContext.user.name;
-                item.imgUser = appContext.user.avatarUrl;
-                UpdateMessage(item);
-              }
-            });
-            messagesContext?.setMessages(mensagens);
-            toast.success('Alterações feitas com sucesso!');
-          });
+          ).then((image) => image as string);
         }
+
+        user.name = await UpdateUser(user.uid as string, userForm.name).then(
+          (name) => name as string,
+        );
+
+        appContext?.saveChangeUser(user);
+        const mensagens = messagesContext?.messages as MessageType[];
+        mensagens.forEach((item) => {
+          if (item.idUser === appContext?.user?.uid) {
+            item.name = appContext.user.name;
+            item.imgUser = appContext.user.avatarUrl;
+            UpdateMessage(item);
+          }
+        });
+        messagesContext?.setMessages(mensagens);
+        toast.success('Alterações feitas com sucesso!');
       } else {
         if (type === 'login') {
           appContext?.signIn(userForm);
