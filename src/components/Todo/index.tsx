@@ -6,13 +6,13 @@ import UpdateTodo from '../../services/UpdateTodo';
 import TodoType from '../../types/TodoType';
 import { TitleContainer, TodoContainer } from './todoStyles';
 
-export default function Todo({
-  idUser,
-  idTodo,
-  name,
-  message,
-  created,
-}: TodoType) {
+type Props = {
+  idTodo: string;
+  name: string;
+  message: string;
+};
+
+export default function Todo({ idTodo, name, message }: Props) {
   const todoContext = useContext(TodoContext);
   const [nameT, setNameT] = useState(name);
   const [messageT, setMessageT] = useState(message);
@@ -29,13 +29,7 @@ export default function Todo({
     todos[index].name = nameT;
     todos[index].message = messageT;
     todoContext?.setTodos(todos);
-    await UpdateTodo({
-      idUser,
-      idTodo,
-      name: nameT,
-      message: messageT,
-      created,
-    });
+    await UpdateTodo(idTodo, nameT, messageT);
   }, [nameT, messageT]);
 
   return (

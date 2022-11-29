@@ -31,7 +31,7 @@ export default function Home() {
       created: new Date(),
     };
 
-    AddTodo(newItem).catch((e: any) => console.log(e));
+    AddTodo(newItem);
 
     todoContext?.setTodos([...todoContext.todos, newItem]);
   };
@@ -42,11 +42,9 @@ export default function Home() {
       <SectionContainer>
         {todoContext?.todos.map((e) => (
           <Todo
+            idTodo={e.idTodo}
             name={e.name}
             message={e.message}
-            idTodo={e.idTodo}
-            idUser={e.idUser}
-            created={e.created}
             key={uuidv4()}
           />
         ))}

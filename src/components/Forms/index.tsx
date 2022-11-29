@@ -6,12 +6,12 @@ import UserType from '../../types/UserType';
 import { AuthContext } from '../../contexts/auth';
 import { FiUpload } from 'react-icons/fi';
 import PhotoStorage from '../../services/PhotoStorage';
-import UpdateUser from '../../services/UpdateUser';
 import { toast } from 'react-toastify';
 import { MessagesContext } from '../../contexts/message';
 import UpdateMessage from '../../services/UpdateMessage';
 import MessageType from '../../types/MessageType';
 import UpdateImage from '../../services/UpdateImage';
+import UpdateName from '../../services/UpdateName';
 
 type FormProtocol = {
   title: string;
@@ -88,7 +88,7 @@ export default function Forms({
           ).then((image) => image as string);
         }
 
-        user.name = await UpdateUser(user.uid as string, userForm.name).then(
+        user.name = await UpdateName(user.uid as string, userForm.name).then(
           (name) => name as string,
         );
 
@@ -104,9 +104,12 @@ export default function Forms({
         messagesContext?.setMessages(mensagens);
         toast.success('Alterações feitas com sucesso!');
       } else {
-        if (type === 'login') {
-          appContext?.signIn(userForm);
-        } else appContext?.signUp(userForm);
+        if (type === 'login') appContext?.signIn(userForm);
+        else {
+          const regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
+          if (regex.test(userForm.email)) appContext?.signUp(userForm);
+          else toast.error('Email inválido!');
+        }
       }
     },
     [userForm, setUserForm, appContext, imageAvatar],
