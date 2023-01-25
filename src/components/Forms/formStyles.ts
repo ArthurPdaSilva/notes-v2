@@ -21,6 +21,7 @@ export const FormContainer = styled.form`
 
   & > h1 {
     font-size: 3rem;
+    text-align: center;
   }
 
   & > input {
