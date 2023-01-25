@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 import GetMessages from '../services/GetMessages';
 import UpdateMessage from '../services/UpdateMessage';
-import MessageType from '../types/MessageType';
+import MessageType from '../@types/MessageType';
 
 interface AppContextInterface {
   messages: MessageType[];

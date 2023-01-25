@@ -5,8 +5,19 @@ export const FormContainer = styled.form`
   ${FlexCentralize}
   ${ContainerPattern}
   justify-content: space-around;
-  width: 25vw;
+  width: 30%;
   height: 70vh;
+  animation: pop 0.4s ease-in-out;
+
+  @keyframes pop {
+    from {
+      transform: scale(0);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
 
   & > h1 {
     font-size: 3rem;
@@ -82,8 +93,8 @@ export const Avatar = styled.label`
   }
 
   img {
-    height: 180px;
-    width: 80%;
-    border-radius: calc(var(--arredondaMentoElementos) + 15px);
+    height: 25vh;
+    width: 15vw;
+    border-radius: 50%;
   }
 `;

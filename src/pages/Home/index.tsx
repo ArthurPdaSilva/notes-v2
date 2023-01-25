@@ -1,15 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Todo from '../../components/Todo';
-import { AuthContext } from '../../contexts/auth';
-import { TodoContext } from '../../contexts/todos';
+import useAuthContext from '../../hooks/useAuth';
+import useTodoContext from '../../hooks/useTodo';
 import AddTodo from '../../services/AddTodo';
 import GetTodos from '../../services/GetTodos';
 import { MainContainer, SectionContainer } from './homeStyles';
 
 export default function Home() {
-  const todoContext = useContext(TodoContext);
-  const appContext = useContext(AuthContext);
+  const appContext = useAuthContext();
+  const todoContext = useTodoContext();
 
   useEffect(() => {
     if (todoContext?.todos.length === 0) {
@@ -38,7 +38,6 @@ export default function Home() {
 
   return (
     <MainContainer>
-      <h1>Faça TODOs de um jeito fácil 😎</h1>
       <SectionContainer>
         {todoContext?.todos.map((e) => (
           <Todo

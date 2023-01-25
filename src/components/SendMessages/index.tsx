@@ -1,15 +1,15 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { v4 } from 'uuid';
-import { AuthContext } from '../../contexts/auth';
-import { MessagesContext } from '../../contexts/message';
 import AddMessages from '../../services/AddMessages';
-import MessageType from '../../types/MessageType';
-import UserType from '../../types/UserType';
+import MessageType from '../../@types/MessageType';
+import UserType from '../../@types/UserType';
 import { Send } from './sendStyles';
+import useAuthContext from '../../hooks/useAuth';
+import useMessageContext from '../../hooks/useMessage';
 
 export default function SendMessages() {
-  const appContext = useContext(AuthContext);
-  const messagesContext = useContext(MessagesContext);
+  const appContext = useAuthContext();
+  const messagesContext = useMessageContext();
   const [message, setMessage] = useState('');
 
   const handleSend = useCallback(

@@ -1,6 +1,6 @@
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import MessageType from '../types/MessageType';
+import MessageType from '../@types/MessageType';
 
 export default async function (message: MessageType) {
   await setDoc(doc(db, `messages/${message.idMessage}`), {

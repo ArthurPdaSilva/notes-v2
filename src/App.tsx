@@ -15,7 +15,7 @@ export default function App() {
         <MessagesProvider>
           <BrowserRouter>
             <ToastContainer
-              theme="dark"
+              theme="colored"
               autoClose={3000}
               position="top-center"
             />

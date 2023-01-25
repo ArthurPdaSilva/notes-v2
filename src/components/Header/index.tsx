@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { HeaderContainer, MenuContainer } from './headerStyles';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/auth';
-import { TodoContext } from '../../contexts/todos';
 import { FiMenu } from 'react-icons/fi';
+import useAuthContext from '../../hooks/useAuth';
+import useTodoContext from '../../hooks/useTodo';
 
 export default function Header() {
-  const appContext = useContext(AuthContext);
-  const todoContext = useContext(TodoContext);
+  const appContext = useAuthContext();
+  const todoContext = useTodoContext();
   const [visible, setVisible] = useState(false);
 
   const handleClose = () => {

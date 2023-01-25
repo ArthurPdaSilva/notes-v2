@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import TodoType from '../types/TodoType';
+import TodoType from '../@types/TodoType';
 
 interface AppContextInterface {
   todos: TodoType[];

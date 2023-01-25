@@ -1,10 +1,10 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FiX } from 'react-icons/fi';
-import { TodoContext } from '../../contexts/todos';
 import RemoveTodo from '../../services/RemoveTodo';
 import UpdateTodo from '../../services/UpdateTodo';
-import TodoType from '../../types/TodoType';
+import TodoType from '../../@types/TodoType';
 import { TitleContainer, TodoContainer } from './todoStyles';
+import useTodoContext from '../../hooks/useTodo';
 
 type Props = {
   idTodo: string;
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function Todo({ idTodo, name, message }: Props) {
-  const todoContext = useContext(TodoContext);
+  const todoContext = useTodoContext();
   const [nameT, setNameT] = useState(name);
   const [messageT, setMessageT] = useState(message);
 

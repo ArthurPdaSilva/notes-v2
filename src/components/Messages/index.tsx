@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef } from 'react';
-import { AuthContext } from '../../contexts/auth';
-import { MessagesContext } from '../../contexts/message';
+import React, { useEffect, useRef } from 'react';
+import useAuthContext from '../../hooks/useAuth';
+import useMessageContext from '../../hooks/useMessage';
 import { PerfilUser, ReceiveMessages, Receiving } from './MessagesStyles';
 
 export default function Messages() {
-  const messagesContext = useContext(MessagesContext);
-  const appContext = useContext(AuthContext);
+  const appContext = useAuthContext();
+  const messagesContext = useMessageContext();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

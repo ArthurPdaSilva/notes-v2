@@ -1,6 +1,6 @@
 import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
-import MessageType from '../types/MessageType';
+import MessageType from '../@types/MessageType';
 
 export default async function (): Promise<MessageType[]> {
   const data = await getDocs(

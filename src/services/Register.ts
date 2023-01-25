@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
-import UserType from '../types/UserType';
+import UserType from '../@types/UserType';
 
 export default async function (
   email: string,

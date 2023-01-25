@@ -1,5 +1,5 @@
 import React, { createContext, useState, useCallback, useEffect } from 'react';
-import UserType from '../types/UserType';
+import UserType from '../@types/UserType';
 import Login from '../services/Login';
 import Register from '../services/Register';
 import Logout from '../services/Logout';

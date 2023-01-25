@@ -1,12 +1,12 @@
-import React, { useCallback, useState, useEffect, useContext } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar, ButtonAdd, FormContainer } from './formStyles';
 import { Container } from '../../patternStyles';
-import UserType from '../../types/UserType';
-import { AuthContext } from '../../contexts/auth';
+import UserType from '../../@types/UserType';
 import { FiUpload } from 'react-icons/fi';
 import { toast } from 'react-toastify';
-import { MessagesContext } from '../../contexts/message';
+import useAuthContext from '../../hooks/useAuth';
+import useMessageContext from '../../hooks/useMessage';
 
 type FormProtocol = {
   title: string;
@@ -21,8 +21,8 @@ export default function Forms({
   btnText,
   linkText,
 }: FormProtocol) {
-  const appContext = useContext(AuthContext);
-  const messagesContext = useContext(MessagesContext);
+  const appContext = useAuthContext();
+  const messagesContext = useMessageContext();
   const [userForm, setUserForm] = useState<UserType>({
     name: '',
     email: '',
